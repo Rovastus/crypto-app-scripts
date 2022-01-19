@@ -1,0 +1,4 @@
+User_ID,UTC_Time,Account,Operation,Coin,Change,Remark
+131068381,2021-04-30 10:58:56,Spot,Buy,BNB,0.0982,
+131068381,2021-04-30 10:58:56,Spot,Transaction Related,EUR,-49.1,
+131068381,2021-04-30 10:58:56,Spot,Fee,BNB,-7.365e-05,

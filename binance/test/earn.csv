@@ -1,0 +1,7 @@
+User_ID,UTC_Time,Account,Operation,Coin,Change,Remark
+131068381,2021-05-03 02:17:13,Spot,POS savings interest,BNB,0.00011926,
+131068381,2021-05-12 08:29:49,Spot,Savings Interest,LTC,5.36e-06,
+131068381,2021-05-30 08:26:20,Spot,ETH 2.0 Staking Rewards,BETH,6.71e-06,
+87685619,2021-03-20 18:46:34,Spot,Commission Fee Shared With You,BNB,9.02e-06,
+87685619,2021-03-25 15:19:13,Spot,Commission History,ADA,0.00359,
+87685619,2021-10-07 16:55:46,Spot,Referral Kickback,BNB,2.04e-05,

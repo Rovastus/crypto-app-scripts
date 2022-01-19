@@ -1,0 +1,33 @@
+# binance operations / crypto-app operations
+BUY_OPERATION = "Buy"
+TRANSACTION_RELATED_OPERATION = "Transaction Related"
+FEE_OPERATION = "Fee"
+DEPOSIT_OPERATION = "Deposit"
+WITHDRAWAL_OPERATION = "Withdrawal"
+TRANSACTION_OPERATION = "Transaction"
+TRANSFER_OPERATION = "Transfer"
+EARN_OPERATION = "Earn"
+POS_SAVINGS_INTEREST_OPERATION = "POS savings interest"
+SAVINGS_INTEREST_OPERATION = "Savings Interest"
+ETH_STAKING_REWARDS_OPERATION = "ETH 2.0 Staking Rewards"
+ETH_STAKING_TRANSACTION_OPERATION = "ETH 2.0 Staking"
+ETH_STAKING_TRANSACTION_OPERATION = "ETH 2.0 Staking"
+SMALL_ASSETS_EXCHANGE_BNB_OPERATION = "Small assets exchange BNB"
+OTC_TRADING_OPERATION = "Large OTC trading"
+COMMISSION_FEE_OPERATION = "Commission Fee Shared With You"
+COMMISION_HISTORY_OPERATION = "Commission History"
+REFERRAL_KICKBACK_OPERATION = "Referral Kickback"
+
+# crypto-app description
+BINANCE_DEPOSIT_DESCRIPTION = "Binance deposit"
+BINANCE_WITHDRAWAL_DESCRIPTION = "Binance withdrawal"
+BINANCE_TRANSACTION_DESCRIPTION = "Binance transaction"
+BINANCE_EARN_DESCRIPTION = "Binance earn"
+
+# binance export columns / crypto-app export columns
+UTC_TIME_COLUMN = "UTC_Time"
+OPERATION_COLUMN = "Operation"
+DESCRIPTION_COLUMN = "Description"
+DATA_COLUMN = "Data"
+COIN_COLUMN = "Coin"
+CHANGE_COLUMN = "Change"

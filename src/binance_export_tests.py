@@ -1,12 +1,12 @@
 import unittest as ut
-import export as ex
+import binance_export as ex
 import pandas as pd
 import constant as const
 
 
-class ExportTests(ut.TestCase):
+class BinanceExportTests(ut.TestCase):
     def test_deposit(self):
-        test_df = pd.read_csv("./test/deposit.csv")
+        test_df = pd.read_csv("src/test/deposit.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -36,7 +36,7 @@ class ExportTests(ut.TestCase):
         )
 
     def test_earn(self):
-        test_df = pd.read_csv("./test/earn.csv")
+        test_df = pd.read_csv("src/test/earn.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -176,7 +176,7 @@ class ExportTests(ut.TestCase):
         )
 
     def test_eth_staking(self):
-        test_df = pd.read_csv("./test/eth_staking.csv")
+        test_df = pd.read_csv("src/test/eth_staking.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -206,7 +206,7 @@ class ExportTests(ut.TestCase):
         )
 
     def test_otc_trading(self):
-        test_df = pd.read_csv("./test/otc_trading.csv")
+        test_df = pd.read_csv("src/test/otc_trading.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -236,7 +236,7 @@ class ExportTests(ut.TestCase):
         )
 
     def test_small_asset_exchange(self):
-        test_df = pd.read_csv("./test/small_asset_exchange.csv")
+        test_df = pd.read_csv("src/test/small_asset_exchange.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -266,7 +266,7 @@ class ExportTests(ut.TestCase):
         )
 
     def test_transaction(self):
-        test_df = pd.read_csv("./test/transaction.csv")
+        test_df = pd.read_csv("src/test/transaction.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()

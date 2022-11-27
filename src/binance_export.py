@@ -1,6 +1,7 @@
-import constant as const
 import json
 import pandas as pd
+
+import src.constant as const
 
 
 class Export:
@@ -22,43 +23,14 @@ class Export:
     def read_export(self, df):
         i = 0
         while i < len(df.index):
-            operation = df[const.OPERATION_COLUMN][i]
+            operation = df[const.BINANCE_OPERATION_COLUMN][i]
 
-            if operation == const.DEPOSIT_OPERATION:
-                deposit = df.iloc[i]
-
-                # create new record
-                self.new_df_data.append(
-                    [
-                        deposit[const.UTC_TIME_COLUMN],
-                        const.DEPOSIT_OPERATION,
-                        const.BINANCE_DEPOSIT_DESCRIPTION,
-                        json.dumps(
-                            {
-                                "amount": deposit[const.CHANGE_COLUMN],
-                                "coin": deposit[const.COIN_COLUMN],
-                            }
-                        ),
-                    ]
-                )
-            elif operation == const.WITHDRAWAL_OPERATION:
-                withdrawal = df.iloc[i]
-
-                # create new record
-                self.new_df_data.append(
-                    [
-                        withdrawal[const.UTC_TIME_COLUMN],
-                        const.WITHDRAWAL_OPERATION,
-                        const.BINANCE_WITHDRAWAL_DESCRIPTION,
-                        json.dumps(
-                            {
-                                "amount": withdrawal[const.CHANGE_COLUMN],
-                                "coin": withdrawal[const.COIN_COLUMN],
-                            }
-                        ),
-                    ]
-                )
-            elif operation == const.BUY_OPERATION:
+            if operation == const.BINANCE_DEPOSIT_OPERATION:
+                pass
+            elif operation == const.BINANCE_WITHDRAWAL_OPERATION:
+                # TODO: create Transfer operation
+                pass
+            elif operation == const.BINANCE_BUY_OPERATION:
                 # load buy, transaction related and fee rows
                 buy = df.iloc[i]
                 i += 1
@@ -67,44 +39,52 @@ class Export:
                 fee = df.iloc[i]
 
                 # check operations
-                self.__check_operation(buy[const.OPERATION_COLUMN], const.BUY_OPERATION)
                 self.__check_operation(
-                    transaction_related[const.OPERATION_COLUMN],
-                    const.TRANSACTION_RELATED_OPERATION,
+                    buy[const.BINANCE_OPERATION_COLUMN], const.BINANCE_BUY_OPERATION
                 )
-                self.__check_operation(fee[const.OPERATION_COLUMN], const.FEE_OPERATION)
+                self.__check_operation(
+                    transaction_related[const.BINANCE_OPERATION_COLUMN],
+                    const.BINANCE_TRANSACTION_RELATED_OPERATION,
+                )
+                self.__check_operation(
+                    fee[const.BINANCE_OPERATION_COLUMN], const.BINANCE_FEE_OPERATION
+                )
 
                 # check UTC times
                 self.__check_times(
                     [
-                        buy[const.UTC_TIME_COLUMN],
-                        transaction_related[const.UTC_TIME_COLUMN],
-                        fee[const.UTC_TIME_COLUMN],
+                        buy[const.BINANCE_UTC_TIME_COLUMN],
+                        transaction_related[const.BINANCE_UTC_TIME_COLUMN],
+                        fee[const.BINANCE_UTC_TIME_COLUMN],
                     ]
                 )
 
                 # create new record
                 self.new_df_data.append(
                     [
-                        buy[const.UTC_TIME_COLUMN],
+                        buy[const.BINANCE_UTC_TIME_COLUMN],
                         const.TRANSACTION_OPERATION,
                         const.BINANCE_TRANSACTION_DESCRIPTION,
                         json.dumps(
                             {
-                                "buy": buy[const.CHANGE_COLUMN],
-                                "buyCoin": buy[const.COIN_COLUMN],
-                                "price": transaction_related[const.CHANGE_COLUMN],
-                                "priceCoin": transaction_related[const.COIN_COLUMN],
-                                "fee": fee[const.CHANGE_COLUMN],
-                                "feeCoin": fee[const.COIN_COLUMN],
+                                "buy": buy[const.BINANCE_CHANGE_COLUMN],
+                                "buyCoin": buy[const.BINANCE_COIN_COLUMN],
+                                "price": transaction_related[
+                                    const.BINANCE_CHANGE_COLUMN
+                                ],
+                                "priceCoin": transaction_related[
+                                    const.BINANCE_COIN_COLUMN
+                                ],
+                                "fee": fee[const.BINANCE_CHANGE_COLUMN],
+                                "feeCoin": fee[const.BINANCE_COIN_COLUMN],
                             }
                         ),
                     ]
                 )
             elif (
-                operation == const.ETH_STAKING_TRANSACTION_OPERATION
-                or operation == const.SMALL_ASSETS_EXCHANGE_BNB_OPERATION
-                or operation == const.OTC_TRADING_OPERATION
+                operation == const.BINANCE_ETH_STAKING_TRANSACTION_OPERATION
+                or operation == const.BINANCE_SMALL_ASSETS_EXCHANGE_BNB_OPERATION
+                or operation == const.BINANCE_OTC_TRADING_OPERATION
             ):
                 # load two rows
                 row_1 = df.iloc[i]
@@ -118,50 +98,50 @@ class Export:
                 # check UTC times
                 self.__check_times(
                     [
-                        buy[const.UTC_TIME_COLUMN],
-                        price[const.UTC_TIME_COLUMN],
+                        buy[const.BINANCE_UTC_TIME_COLUMN],
+                        price[const.BINANCE_UTC_TIME_COLUMN],
                     ]
                 )
 
                 # create new record
                 self.new_df_data.append(
                     [
-                        buy[const.UTC_TIME_COLUMN],
+                        buy[const.BINANCE_UTC_TIME_COLUMN],
                         const.TRANSACTION_OPERATION,
                         const.BINANCE_TRANSACTION_DESCRIPTION,
                         json.dumps(
                             {
-                                "buy": buy[const.CHANGE_COLUMN],
-                                "buyCoin": buy[const.COIN_COLUMN],
-                                "price": price[const.CHANGE_COLUMN],
-                                "priceCoin": price[const.COIN_COLUMN],
+                                "buy": buy[const.BINANCE_CHANGE_COLUMN],
+                                "buyCoin": buy[const.BINANCE_COIN_COLUMN],
+                                "price": price[const.BINANCE_CHANGE_COLUMN],
+                                "priceCoin": price[const.BINANCE_COIN_COLUMN],
                                 "fee": 0,
-                                "feeCoin": buy[const.COIN_COLUMN],
+                                "feeCoin": buy[const.BINANCE_COIN_COLUMN],
                             }
                         ),
                     ]
                 )
             elif (
-                operation == const.EARN_OPERATION
-                or operation == const.POS_SAVINGS_INTEREST_OPERATION
-                or operation == const.SAVINGS_INTEREST_OPERATION
-                or operation == const.ETH_STAKING_REWARDS_OPERATION
-                or operation == const.COMMISSION_FEE_OPERATION
-                or operation == const.COMMISION_HISTORY_OPERATION
-                or operation == const.REFERRAL_KICKBACK_OPERATION
+                operation == const.BINANCE_EARN_OPERATION
+                or operation == const.BINANCE_POS_SAVINGS_INTEREST_OPERATION
+                or operation == const.BINANCE_SAVINGS_INTEREST_OPERATION
+                or operation == const.BINANCE_ETH_STAKING_REWARDS_OPERATION
+                or operation == const.BINANCE_COMMISSION_FEE_OPERATION
+                or operation == const.BINANCE_COMMISION_HISTORY_OPERATION
+                or operation == const.BINANCE_REFERRAL_KICKBACK_OPERATION
             ):
                 earn = df.iloc[i]
 
                 # create new record
                 self.new_df_data.append(
                     [
-                        earn[const.UTC_TIME_COLUMN],
+                        earn[const.BINANCE_UTC_TIME_COLUMN],
                         const.EARN_OPERATION,
                         const.BINANCE_EARN_DESCRIPTION,
                         json.dumps(
                             {
-                                "amount": earn[const.CHANGE_COLUMN],
-                                "coin": earn[const.COIN_COLUMN],
+                                "amount": earn[const.BINANCE_CHANGE_COLUMN],
+                                "coin": earn[const.BINANCE_COIN_COLUMN],
                             }
                         ),
                     ]
@@ -182,17 +162,17 @@ class Export:
             raise Exception("Unexpected operation.", operation, expected_operation)
 
     def __get_buy_row(self, df_row_1, df_row_2):
-        if df_row_1[const.CHANGE_COLUMN] >= 0:
+        if df_row_1[const.BINANCE_CHANGE_COLUMN] >= 0:
             return df_row_1
-        elif df_row_2[const.CHANGE_COLUMN] >= 0:
+        elif df_row_2[const.BINANCE_CHANGE_COLUMN] >= 0:
             return df_row_2
         else:
             raise Exception("No buy row found.", df_row_1, df_row_2)
 
     def __get_price_row(self, df_row_1, df_row_2):
-        if df_row_1[const.CHANGE_COLUMN] < 0:
+        if df_row_1[const.BINANCE_CHANGE_COLUMN] < 0:
             return df_row_1
-        elif df_row_2[const.CHANGE_COLUMN] < 0:
+        elif df_row_2[const.BINANCE_CHANGE_COLUMN] < 0:
             return df_row_2
         else:
             raise Exception("No price row found.", df_row_1, df_row_2)

@@ -1,42 +1,20 @@
 import unittest as ut
-import binance_export as ex
 import pandas as pd
-import constant as const
+import src.constant as const
+import src.binance_export as ex
 
 
 class BinanceExportTests(ut.TestCase):
     def test_deposit(self):
-        test_df = pd.read_csv("src/test/deposit.csv")
+        test_df = pd.read_csv("src/tests/binance/deposit.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
 
-        self.assertEqual(len(result_df), 1, "Unexpected size")
-
-        result_row = result_df.iloc[0]
-        self.assertEqual(
-            result_row[const.UTC_TIME_COLUMN],
-            "2021-04-29 20:03:43",
-            "Unexpected utc_time",
-        )
-        self.assertEqual(
-            result_row[const.OPERATION_COLUMN],
-            const.DEPOSIT_OPERATION,
-            "Unexpected operation",
-        )
-        self.assertEqual(
-            result_row[const.DESCRIPTION_COLUMN],
-            const.BINANCE_DEPOSIT_DESCRIPTION,
-            "Unexpected description",
-        )
-        self.assertEqual(
-            result_row[const.DATA_COLUMN],
-            '{"amount": 98.2, "coin": "EUR"}',
-            "Unexpected data",
-        )
+        self.assertEqual(len(result_df), 0, "Unexpected size")
 
     def test_earn(self):
-        test_df = pd.read_csv("src/test/earn.csv")
+        test_df = pd.read_csv("src/tests/binance/earn.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -51,7 +29,7 @@ class BinanceExportTests(ut.TestCase):
         )
         self.assertEqual(
             result_row[const.OPERATION_COLUMN],
-            const.EARN_OPERATION,
+            const.BINANCE_EARN_OPERATION,
             "Unexpected operation",
         )
         self.assertEqual(
@@ -73,7 +51,7 @@ class BinanceExportTests(ut.TestCase):
         )
         self.assertEqual(
             result_row[const.OPERATION_COLUMN],
-            const.EARN_OPERATION,
+            const.BINANCE_EARN_OPERATION,
             "Unexpected operation",
         )
         self.assertEqual(
@@ -95,7 +73,7 @@ class BinanceExportTests(ut.TestCase):
         )
         self.assertEqual(
             result_row[const.OPERATION_COLUMN],
-            const.EARN_OPERATION,
+            const.BINANCE_EARN_OPERATION,
             "Unexpected operation",
         )
         self.assertEqual(
@@ -117,7 +95,7 @@ class BinanceExportTests(ut.TestCase):
         )
         self.assertEqual(
             result_row[const.OPERATION_COLUMN],
-            const.EARN_OPERATION,
+            const.BINANCE_EARN_OPERATION,
             "Unexpected operation",
         )
         self.assertEqual(
@@ -139,7 +117,7 @@ class BinanceExportTests(ut.TestCase):
         )
         self.assertEqual(
             result_row[const.OPERATION_COLUMN],
-            const.EARN_OPERATION,
+            const.BINANCE_EARN_OPERATION,
             "Unexpected operation",
         )
         self.assertEqual(
@@ -176,7 +154,7 @@ class BinanceExportTests(ut.TestCase):
         )
 
     def test_eth_staking(self):
-        test_df = pd.read_csv("src/test/eth_staking.csv")
+        test_df = pd.read_csv("src/tests/binance/eth_staking.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -191,7 +169,7 @@ class BinanceExportTests(ut.TestCase):
         )
         self.assertEqual(
             result_row[const.OPERATION_COLUMN],
-            const.TRANSACTION_OPERATION,
+            const.BINANCE_TRANSACTION_OPERATION,
             "Unexpected operation",
         )
         self.assertEqual(
@@ -200,13 +178,13 @@ class BinanceExportTests(ut.TestCase):
             "Unexpected description",
         )
         self.assertEqual(
-            result_row[const.DATA_COLUMN],
+            result_row[const.BINANCE_DATA_COLUMN],
             '{"buy": 0.035, "buyCoin": "BETH", "price": -0.035, "priceCoin": "ETH", "fee": 0, "feeCoin": "BETH"}',
             "Unexpected data",
         )
 
     def test_otc_trading(self):
-        test_df = pd.read_csv("src/test/otc_trading.csv")
+        test_df = pd.read_csv("src/tests/binance/otc_trading.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -221,7 +199,7 @@ class BinanceExportTests(ut.TestCase):
         )
         self.assertEqual(
             result_row[const.OPERATION_COLUMN],
-            const.TRANSACTION_OPERATION,
+            const.BINANCE_TRANSACTION_OPERATION,
             "Unexpected operation",
         )
         self.assertEqual(
@@ -236,7 +214,7 @@ class BinanceExportTests(ut.TestCase):
         )
 
     def test_small_asset_exchange(self):
-        test_df = pd.read_csv("src/test/small_asset_exchange.csv")
+        test_df = pd.read_csv("src/tests/binance/small_asset_exchange.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -251,7 +229,7 @@ class BinanceExportTests(ut.TestCase):
         )
         self.assertEqual(
             result_row[const.OPERATION_COLUMN],
-            const.TRANSACTION_OPERATION,
+            const.BINANCE_TRANSACTION_OPERATION,
             "Unexpected operation",
         )
         self.assertEqual(
@@ -266,7 +244,7 @@ class BinanceExportTests(ut.TestCase):
         )
 
     def test_transaction(self):
-        test_df = pd.read_csv("src/test/transaction.csv")
+        test_df = pd.read_csv("src/tests/binance/transaction.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -281,7 +259,7 @@ class BinanceExportTests(ut.TestCase):
         )
         self.assertEqual(
             result_row[const.OPERATION_COLUMN],
-            const.TRANSACTION_OPERATION,
+            const.BINANCE_TRANSACTION_OPERATION,
             "Unexpected operation",
         )
         self.assertEqual(

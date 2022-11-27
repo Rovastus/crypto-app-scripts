@@ -28,7 +28,7 @@ BINANCE_COMMISSION_FEE_OPERATION = "Commission Fee Shared With You"
 BINANCE_COMMISION_HISTORY_OPERATION = "Commission History"
 BINANCE_REFERRAL_KICKBACK_OPERATION = "Referral Kickback"
 
-# crypto-app description
+# binance description
 BINANCE_DEPOSIT_DESCRIPTION = "Binance deposit"
 BINANCE_WITHDRAWAL_DESCRIPTION = "Binance withdrawal"
 BINANCE_TRANSACTION_DESCRIPTION = "Binance transaction"

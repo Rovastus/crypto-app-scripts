@@ -7,18 +7,16 @@ import src.constant as const
 class Export:
     def __init__(self):
         self.new_df_data = []
-        self.new_df_columns = [
-            const.UTC_TIME_COLUMN,
-            const.OPERATION_COLUMN,
-            const.DESCRIPTION_COLUMN,
-            const.DATA_COLUMN,
-        ]
+        self.new_df_columns = const.CRYPTO_APP_EXPORT_COLUMNS
 
     def get_df(self):
         return pd.DataFrame(
             self.new_df_data,
             columns=self.new_df_columns,
         )
+
+    def append_to_df(self, df):
+        df.append(self.get_df())
 
     def read_export(self, df):
         i = 0

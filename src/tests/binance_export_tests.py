@@ -6,7 +6,7 @@ import src.binance_export as ex
 
 class BinanceExportTests(ut.TestCase):
     def test_deposit(self):
-        test_df = pd.read_csv("src/tests/binance/deposit.csv")
+        test_df = pd.read_csv("src/tests/data/binance/deposit.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -14,7 +14,7 @@ class BinanceExportTests(ut.TestCase):
         self.assertEqual(len(result_df), 0, "Unexpected size")
 
     def test_earn(self):
-        test_df = pd.read_csv("src/tests/binance/earn.csv")
+        test_df = pd.read_csv("src/tests/data/binance/earn.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -154,7 +154,7 @@ class BinanceExportTests(ut.TestCase):
         )
 
     def test_eth_staking(self):
-        test_df = pd.read_csv("src/tests/binance/eth_staking.csv")
+        test_df = pd.read_csv("src/tests/data/binance/eth_staking.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -184,7 +184,7 @@ class BinanceExportTests(ut.TestCase):
         )
 
     def test_otc_trading(self):
-        test_df = pd.read_csv("src/tests/binance/otc_trading.csv")
+        test_df = pd.read_csv("src/tests/data/binance/otc_trading.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -214,7 +214,7 @@ class BinanceExportTests(ut.TestCase):
         )
 
     def test_small_asset_exchange(self):
-        test_df = pd.read_csv("src/tests/binance/small_asset_exchange.csv")
+        test_df = pd.read_csv("src/tests/data/binance/small_asset_exchange.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()
@@ -244,7 +244,7 @@ class BinanceExportTests(ut.TestCase):
         )
 
     def test_transaction(self):
-        test_df = pd.read_csv("src/tests/binance/transaction.csv")
+        test_df = pd.read_csv("src/tests/data/binance/transaction.csv")
         export = ex.Export()
         export.read_export(test_df)
         result_df = export.get_df()

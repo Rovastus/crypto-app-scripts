@@ -4,10 +4,33 @@ OPERATION_COLUMN = "Operation"
 DESCRIPTION_COLUMN = "Description"
 DATA_COLUMN = "Data"
 
+CRYPTO_APP_EXPORT_COLUMNS = [
+    UTC_TIME_COLUMN,
+    OPERATION_COLUMN,
+    DESCRIPTION_COLUMN,
+    DATA_COLUMN,
+]
+
 # crypto-app export operations
 TRANSACTION_OPERATION = "Transaction"
 TRANSFER_OPERATION = "Transfer"
 EARN_OPERATION = "Earn"
+
+# crypto-app dir names
+BINANCE_DIR = "\\binance"
+KRAKEN_DIR = "\\kraken"
+BTC_DIR = "\\btc"
+ETH_DIR = "\\eth"
+DOT_DIR = "\\dot"
+SOL_DIR = "\\sol"
+
+# binance export columns
+BINANCE_UTC_TIME_COLUMN = "UTC_Time"
+BINANCE_OPERATION_COLUMN = "Operation"
+BINANCE_DESCRIPTION_COLUMN = "Description"
+BINANCE_DATA_COLUMN = "Data"
+BINANCE_COIN_COLUMN = "Coin"
+BINANCE_CHANGE_COLUMN = "Change"
 
 # binance operations
 BINANCE_BUY_OPERATION = "Buy"
@@ -34,10 +57,11 @@ BINANCE_WITHDRAWAL_DESCRIPTION = "Binance withdrawal"
 BINANCE_TRANSACTION_DESCRIPTION = "Binance transaction"
 BINANCE_EARN_DESCRIPTION = "Binance earn"
 
-# binance export columns
-BINANCE_UTC_TIME_COLUMN = "UTC_Time"
-BINANCE_OPERATION_COLUMN = "Operation"
-BINANCE_DESCRIPTION_COLUMN = "Description"
-BINANCE_DATA_COLUMN = "Data"
-BINANCE_COIN_COLUMN = "Coin"
-BINANCE_CHANGE_COLUMN = "Change"
+# kraken export columns
+KRAKEN_REFID_COLUMN = "refid"
+KRAKEN_UTC_TIME_COLUMN = "time"
+KRAKEN_TYPE_COLUMN = "type"
+KRAKEN_SUBTYPE_COLUMN = "subtype"
+KRAKEN_ASSET_COLUMN = "asset"
+KRAKEN_AMOUNT_COLUMN = "amount"
+KRAKEN_FEE_COLUMN = "fee"

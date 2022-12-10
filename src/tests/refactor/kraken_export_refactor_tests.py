@@ -13,22 +13,27 @@ class KrakenExportRefactorTests(ut.TestCase):
         self.assertEqual(len(test_df), 11, "Unexpected size")
 
         expectedResults = [
-            "BTC",
-            "DOT",
-            "SOL",
-            "KSM",
-            "ETH2",
-            "ETH",
-            "EUR",
-            "BTC",
-            "ETH",
-            "ETH2",
-            "ETH2",
+            {"asset": "BTC", "fee": 0.0},
+            {"asset": "DOT", "fee": 0.0},
+            {"asset": "SOL", "fee": 0.0},
+            {"asset": "KSM", "fee": 0.0},
+            {"asset": "ETH2", "fee": 0.0},
+            {"asset": "ETH", "fee": 0.0},
+            {"asset": "EUR", "fee": -1.0399},
+            {"asset": "BTC", "fee": 0.0},
+            {"asset": "ETH", "fee": 0.0},
+            {"asset": "ETH2", "fee": 0.0},
+            {"asset": "ETH2", "fee": 0.0},
         ]
 
         for i, element in enumerate(expectedResults):
             self.assertEqual(
                 test_df[const.KRAKEN_ASSET_COLUMN][i],
-                element,
+                element["asset"],
                 "Unexpected asset on index {}".format(i),
+            )
+            self.assertEqual(
+                test_df[const.KRAKEN_FEE_COLUMN][i],
+                element["fee"],
+                "Unexpected fee on index {}".format(i),
             )

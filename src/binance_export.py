@@ -36,10 +36,6 @@ class Export:
                 i += 1
                 fee = df.iloc[i]
 
-                # check operations
-                self.__check_operation(
-                    buy[const.BINANCE_OPERATION_COLUMN], const.BINANCE_BUY_OPERATION
-                )
                 self.__check_operation(
                     transaction_related[const.BINANCE_OPERATION_COLUMN],
                     const.BINANCE_TRANSACTION_RELATED_OPERATION,

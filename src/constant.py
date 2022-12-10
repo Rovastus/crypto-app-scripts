@@ -65,3 +65,19 @@ KRAKEN_SUBTYPE_COLUMN = "subtype"
 KRAKEN_ASSET_COLUMN = "asset"
 KRAKEN_AMOUNT_COLUMN = "amount"
 KRAKEN_FEE_COLUMN = "fee"
+KRAKEN_BALANCE_COLUMN = "balance"
+
+# kraken types
+KRAKEN_DEPOSIT_TYPE = "deposit"
+KRAKEN_STAKING_TYPE = "staking"
+KRAKEN_TRADE_TYPE = "trade"
+KRAKEN_TRANSFER_TYPE = "transfer"
+KRAKEN_WITHDRAWAL_TYPE = "withdrawal"
+
+# kraken subtypes
+KRAKEN_SPOT_TO_STAKING_SUBTYPE = "spottostaking"
+
+# kraken description
+KRAKEN_EARN_DESCRIPTION = "Kraken earn"
+KRAKEN_TRANSACTION_DESCRIPTION = "Kraken transaction"
+KRAKEN_TRANSFER_DESCRIPTION = "Kraken transfer"

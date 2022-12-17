@@ -1,4 +1,4 @@
-import src.constant as const
+import constant as const
 
 
 class KrakenExportRefactor:

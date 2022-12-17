@@ -1,12 +1,12 @@
 import unittest as ut
 import pandas as pd
-import src.constant as const
-import src.refactor.kraken_export_refactor as ker
+import constant as const
+import refactor.kraken_export_refactor as ker
 
 
 class KrakenExportRefactorTests(ut.TestCase):
     def test_refactor(self):
-        test_df = pd.read_csv("src/tests/data/kraken/refactor.csv")
+        test_df = pd.read_csv("tests/data/kraken/refactor.csv")
         exportRefactor = ker.KrakenExportRefactor()
         exportRefactor.refactor(test_df)
 

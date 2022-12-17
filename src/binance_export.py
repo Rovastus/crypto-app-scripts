@@ -1,10 +1,10 @@
 import json
 import pandas as pd
 
-import src.constant as const
+import constant as const
 
 
-class Export:
+class BinanceExport:
     def __init__(self):
         self.new_df_data = []
         self.new_df_columns = const.CRYPTO_APP_EXPORT_COLUMNS
@@ -15,15 +15,18 @@ class Export:
             columns=self.new_df_columns,
         )
 
-    def append_to_df(self, df):
-        df.append(self.get_df())
-
     def read_export(self, df):
         i = 0
         while i < len(df.index):
             operation = df[const.BINANCE_OPERATION_COLUMN][i]
 
-            if operation == const.BINANCE_DEPOSIT_OPERATION:
+            if (
+                operation == const.BINANCE_DEPOSIT_OPERATION
+                or operation == const.BINANCE_POS_SAVINGS_PURCHASE_OPERATION
+                or operation == const.BINANCE_POS_SAVINGS_REDEMPTION_OPERATION
+                or operation == const.BINANCE_SAVINGS_PURCHASE_OPERATION
+                or operation == const.BINANCE_SAVINGS_PRINCIPAL_REDEMPTION_OPERATION
+            ):
                 pass
             elif operation == const.BINANCE_WITHDRAWAL_OPERATION:
                 # TODO: create Transfer operation

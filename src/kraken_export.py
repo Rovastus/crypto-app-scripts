@@ -4,7 +4,7 @@ import pandas as pd
 import constant as const
 
 
-class Export:
+class KrakenExport:
     def __init__(self):
         self.new_df_data = []
         self.new_df_columns = const.CRYPTO_APP_EXPORT_COLUMNS
@@ -14,9 +14,6 @@ class Export:
             self.new_df_data,
             columns=self.new_df_columns,
         )
-
-    def append_to_df(self, df):
-        df.append(self.get_df())
 
     def read_export(self, df):
         i = 0

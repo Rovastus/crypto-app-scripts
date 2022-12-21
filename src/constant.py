@@ -85,3 +85,24 @@ KRAKEN_SPOT_TO_STAKING_SUBTYPE = "spottostaking"
 KRAKEN_EARN_DESCRIPTION = "Kraken earn"
 KRAKEN_TRANSACTION_DESCRIPTION = "Kraken transaction"
 KRAKEN_TRANSFER_DESCRIPTION = "Kraken transfer"
+
+# solana export columns
+SOLANA_UTC_TIME_COLUMN = "timestamp"
+SOLANA_TX_TYPE_COLUMN = "tx_type"
+SOLANA_RECEIVED_AMOUNT = "received_amount"
+SOLANA_RECEIVED_CURRENCY_COLUMN = "received_currency"
+SOLANA_SENT_AMOUNT_COLUMN = "sent_amount"
+SOLANA_SENT_CURRENCY_COLUMN = "sent_currency"
+SOLANA_FEE_COLUMN = "fee"
+SOLANA_FEE_CURRENCY_COLUMN = "fee_currency"
+SOLANA_COMMENT_COLUMN = "comment"
+
+# solana types
+SOLANA_STAKING_TYPE = "STAKING"
+SOLANA_SPEND_TYPE = "SPEND"
+SOLANA_TRANSFER_TYPE = "TRANSFER"
+
+# solana description
+SOLANA_EARN_DESCRIPTION = "Solana earn"
+SOLANA_SPEND_DESCRIPTION = "Solana spend"
+SOLANA_TRANSFER_DESCRIPTION = "Solana transfer"

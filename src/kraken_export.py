@@ -36,7 +36,6 @@ class KrakenExport:
                         ),
                     ]
                 )
-                pass
             elif type == const.KRAKEN_TRADE_TYPE:
                 # load second column
                 price = self.__get_price_row(df.iloc[i], df.iloc[i + 1])

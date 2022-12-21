@@ -8,6 +8,7 @@ import refactor.binance_export_refactor as ber
 import refactor.kraken_export_refactor as ker
 import binance_export as be
 import kraken_export as ke
+import solana_export as se
 
 
 def __refactor_binance_export(root, files, year, output):
@@ -79,6 +80,23 @@ def __crypto_app_kraken_export(root, ref_files, output):
     crypto_app_export.to_csv(output + "\\" + "kraken.csv", index=False)
 
 
+def __crypto_app_solana_export(root, ref_files, output):
+    crypto_app_export = None
+
+    for file in ref_files:
+        print("Processing solana export: " + root + "\\" + file)
+        solana_export = se.SolanaExport()
+        export = pd.read_csv(root + "\\" + file)
+        solana_export.read_export(export)
+        if crypto_app_export is None:
+            crypto_app_export = solana_export.get_df()
+        else:
+            crypto_app_export = crypto_app_export.append(solana_export.get_df())
+
+    print("Saving crypto-app solana export file: " + output + "\\" + "solana.csv")
+    crypto_app_export.to_csv(output + "\\" + "solana.csv", index=False)
+
+
 if __name__ == "__main__":
     cli = argparse.ArgumentParser()
     cli.add_argument("-d", "--data", required=True, type=pathlib.Path)
@@ -128,5 +146,4 @@ if __name__ == "__main__":
 
         if root.endswith(const.SOL_DIR):
             print("SOL")
-            for file in files:
-                print(file)
+            __crypto_app_solana_export(root, files, str(args.output))

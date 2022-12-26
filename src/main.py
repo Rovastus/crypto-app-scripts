@@ -8,7 +8,8 @@ import refactor.binance_export_refactor as ber
 import refactor.kraken_export_refactor as ker
 import binance_export as be
 import kraken_export as ke
-import solana_export as se
+import solana_export as sol
+import polkadot_export as dot
 
 
 def __refactor_binance_export(root, files, year, output):
@@ -85,7 +86,7 @@ def __crypto_app_solana_export(root, ref_files, output):
 
     for file in ref_files:
         print("Processing solana export: " + root + "\\" + file)
-        solana_export = se.SolanaExport()
+        solana_export = sol.SolanaExport()
         export = pd.read_csv(root + "\\" + file)
         solana_export.read_export(export)
         if crypto_app_export is None:
@@ -95,6 +96,23 @@ def __crypto_app_solana_export(root, ref_files, output):
 
     print("Saving crypto-app solana export file: " + output + "\\" + "solana.csv")
     crypto_app_export.to_csv(output + "\\" + "solana.csv", index=False)
+
+
+def __crypto_app_polkadot_export(root, ref_files, output):
+    crypto_app_export = None
+
+    for file in ref_files:
+        print("Processing polkadot export: " + root + "\\" + file)
+        polkadot_export = dot.PolkadotExport()
+        export = pd.read_csv(root + "\\" + file)
+        polkadot_export.read_export(export)
+        if crypto_app_export is None:
+            crypto_app_export = polkadot_export.get_df()
+        else:
+            crypto_app_export = crypto_app_export.append(polkadot_export.get_df())
+
+    print("Saving crypto-app polkadot export file: " + output + "\\" + "polkadot.csv")
+    crypto_app_export.to_csv(output + "\\" + "polkadot.csv", index=False)
 
 
 if __name__ == "__main__":
@@ -141,8 +159,7 @@ if __name__ == "__main__":
 
         if root.endswith(const.DOT_DIR):
             print("DOT")
-            for file in files:
-                print(file)
+            __crypto_app_polkadot_export(root, files, str(args.output))
 
         if root.endswith(const.SOL_DIR):
             print("SOL")

@@ -106,3 +106,17 @@ SOLANA_TRANSFER_TYPE = "TRANSFER"
 SOLANA_EARN_DESCRIPTION = "Solana earn"
 SOLANA_SPEND_DESCRIPTION = "Solana spend"
 SOLANA_TRANSFER_DESCRIPTION = "Solana transfer"
+
+# polkadot export columns
+POLKADOT_UTC_TIME_COLUMN = "Date"
+POLKADOT_EXTRINSIC_ID_COLUMN = "Extrinsic ID"
+POLKADOT_ACTION_COLUMN = "Action"
+
+# polkadot actions
+POLKADOT_JOIN_NOMINATION_POOLS_ACTION = "nominationpools(join)"
+POLKADOT_BOND_EXTRA_NOMINATION_POOLS_ACTION = "nominationpools(bond_extra)"
+
+# polkadot description
+POLKADOT_EARN_DESCRIPTION = "Polkadot earn"
+POLKADOT_SPEND_DESCRIPTION = "Polkadot spend"
+POLKADOT_TRANSFER_DESCRIPTION = "Polkadot transfer"

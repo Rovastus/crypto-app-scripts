@@ -164,3 +164,16 @@ if __name__ == "__main__":
         if root.endswith(const.SOL_DIR):
             print("SOL")
             __crypto_app_solana_export(root, files, str(args.output))
+
+    # create final file
+    final_files = []
+    for root, dirs, files in os.walk(args.output, topdown=False):
+        for file in files:
+            if not file.startswith("ref_"):
+                final_files.append(str(args.output) + "\\" + file)
+
+    df_list = [pd.read_csv(file) for file in final_files]
+    final_df = pd.concat(df_list)
+    final_df = final_df.sort_values(by=const.UTC_TIME_COLUMN)
+    print("Saving final export file: " + str(args.output) + "\\" + "final.csv")
+    final_df.to_csv(str(args.output) + "\\" + "final.csv", index=False)

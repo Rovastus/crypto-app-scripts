@@ -24,7 +24,9 @@ def __crypto_app_binance_export(root, output, transactions, earnings, withdrawal
         if crypto_app_export is None:
             crypto_app_export = binance_transaction_export.get_df()
         else:
-            crypto_app_export = pd.concat([crypto_app_export, binance_transaction_export.get_df()])
+            crypto_app_export = pd.concat(
+                [crypto_app_export, binance_transaction_export.get_df()]
+            )
 
     for earning in earnings:
         print("Processing binance earning export: " + root + "\\" + earning)
@@ -34,7 +36,9 @@ def __crypto_app_binance_export(root, output, transactions, earnings, withdrawal
         if crypto_app_export is None:
             crypto_app_export = binance_earning_export.get_df()
         else:
-            crypto_app_export = pd.concat([crypto_app_export, binance_earning_export.get_df()])
+            crypto_app_export = pd.concat(
+                [crypto_app_export, binance_earning_export.get_df()]
+            )
 
     for withdrawal in withdrawals:
         print("Processing binance withdrawal export: " + root + "\\" + withdrawal)
@@ -44,7 +48,9 @@ def __crypto_app_binance_export(root, output, transactions, earnings, withdrawal
         if crypto_app_export is None:
             crypto_app_export = binance_withdrawal_export.get_df()
         else:
-            crypto_app_export = pd.concat([crypto_app_export, binance_withdrawal_export.get_df()])
+            crypto_app_export = pd.concat(
+                [crypto_app_export, binance_withdrawal_export.get_df()]
+            )
 
     print("Saving crypto-app binance export file: " + output + "\\binance.csv")
     crypto_app_export.to_csv(output + "\\binance.csv", index=False)
@@ -138,11 +144,19 @@ def main():
 
         if root.endswith(const.BINANCE_DIR_PATH):
             print("Binance")
-            withdrawals = [w for w in files if w.startswith(const.BINANCE_WITHDRAWAL_EXPORT_NAME)]
-            transactions = [t for t in files if t.startswith(const.BINANCE_TRANSACTION_EXPORT_NAME)]
-            earnings = [e for e in files if e.startswith(const.BINANCE_EARNING_EXPORT_NAME)]
+            withdrawals = [
+                w for w in files if w.startswith(const.BINANCE_WITHDRAWAL_EXPORT_NAME)
+            ]
+            transactions = [
+                t for t in files if t.startswith(const.BINANCE_TRANSACTION_EXPORT_NAME)
+            ]
+            earnings = [
+                e for e in files if e.startswith(const.BINANCE_EARNING_EXPORT_NAME)
+            ]
 
-            __crypto_app_binance_export(root, str(args.output), transactions, earnings, withdrawals)
+            __crypto_app_binance_export(
+                root, str(args.output), transactions, earnings, withdrawals
+            )
 
         if root.endswith(const.KRAKEN_DIR_PATH):
             print("Kraken")
@@ -181,6 +195,7 @@ def main():
     final_df = final_df.sort_values(by=const.UTC_TIME_COLUMN)
     print("Saving final export file: " + str(args.output) + "\\final.csv")
     final_df.to_csv(str(args.output) + "\\final.csv", index=False)
+
 
 if __name__ == "__main__":
     main()

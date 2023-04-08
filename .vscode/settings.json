@@ -1,5 +1,14 @@
 {
   "python.formatting.provider": "black",
   "python.linting.pylintEnabled": true,
-  "python.linting.enabled": true
+  "python.linting.enabled": true,
+  "python.linting.pylintArgs": [
+    "--disable=C0114,C0115,C0116,E0401,W0719",
+    "--max-line-length=150",
+    "--good-names=df,i"
+  ],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true
+  },
 }

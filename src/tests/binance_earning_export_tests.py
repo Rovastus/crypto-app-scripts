@@ -1,13 +1,14 @@
 import unittest as ut
 import pandas as pd
+from binance_earning_export import BinanceEarningExport
+
 import constant as const
-from binance_export import BinanceExport
 
 
-class BinanceExportTests(ut.TestCase):
+class BinanceEarningExportTests(ut.TestCase):
     def test_deposit(self):
         test_df = pd.read_csv("tests/data/binance/deposit.csv")
-        export = BinanceExport()
+        export = BinanceEarningExport()
         export.read_export(test_df)
         result_df = export.get_df()
 
@@ -15,7 +16,7 @@ class BinanceExportTests(ut.TestCase):
 
     def test_earn(self):
         test_df = pd.read_csv("tests/data/binance/earn.csv")
-        export = BinanceExport()
+        export = BinanceEarningExport()
         export.read_export(test_df)
         result_df = export.get_df()
 
@@ -155,7 +156,7 @@ class BinanceExportTests(ut.TestCase):
 
     def test_eth_staking(self):
         test_df = pd.read_csv("tests/data/binance/eth_staking.csv")
-        export = BinanceExport()
+        export = BinanceEarningExport()
         export.read_export(test_df)
         result_df = export.get_df()
 
@@ -185,7 +186,7 @@ class BinanceExportTests(ut.TestCase):
 
     def test_otc_trading(self):
         test_df = pd.read_csv("tests/data/binance/otc_trading.csv")
-        export = BinanceExport()
+        export = BinanceEarningExport()
         export.read_export(test_df)
         result_df = export.get_df()
 
@@ -215,7 +216,7 @@ class BinanceExportTests(ut.TestCase):
 
     def test_small_asset_exchange(self):
         test_df = pd.read_csv("tests/data/binance/small_asset_exchange.csv")
-        export = BinanceExport()
+        export = BinanceEarningExport()
         export.read_export(test_df)
         result_df = export.get_df()
 
@@ -245,7 +246,7 @@ class BinanceExportTests(ut.TestCase):
 
     def test_transaction(self):
         test_df = pd.read_csv("tests/data/binance/transaction.csv")
-        export = BinanceExport()
+        export = BinanceEarningExport()
         export.read_export(test_df)
         result_df = export.get_df()
 
@@ -275,15 +276,15 @@ class BinanceExportTests(ut.TestCase):
 
     def test_transaction_exception(self):
         test_df = pd.read_csv("tests/data/binance/transaction.csv")
-        export = BinanceExport()
+        export = BinanceEarningExport()
 
         # test Buy operation not first
         test_df.loc[0], test_df.loc[1] = test_df.iloc[1], test_df.iloc[0]
 
-        with self.assertRaises(Exception) as cm:
+        with self.assertRaises(Exception) as context:
             export.read_export(test_df)
         self.assertEqual(
-            cm.exception.args,
+            context.exception.args,
             ("Unexpected operation.", "Transaction Related"),
             "Exception arguments are not same",
         )
@@ -292,10 +293,10 @@ class BinanceExportTests(ut.TestCase):
         test_df = pd.read_csv("tests/data/binance/transaction.csv")
         test_df.loc[1], test_df.loc[2] = test_df.iloc[2], test_df.iloc[1]
 
-        with self.assertRaises(Exception) as cm:
+        with self.assertRaises(Exception) as context:
             export.read_export(test_df)
         self.assertEqual(
-            cm.exception.args,
+            context.exception.args,
             ("Unexpected operation.", "Fee", "Transaction Related"),
             "Exception arguments are not same",
         )
@@ -304,10 +305,10 @@ class BinanceExportTests(ut.TestCase):
         test_df = pd.read_csv("tests/data/binance/transaction.csv")
         test_df.loc[2, const.BINANCE_OPERATION_COLUMN] = "Buy"
 
-        with self.assertRaises(Exception) as cm:
+        with self.assertRaises(Exception) as context:
             export.read_export(test_df)
         self.assertEqual(
-            cm.exception.args,
+            context.exception.args,
             ("Unexpected operation.", "Buy", "Fee"),
             "Exception arguments are not same",
         )
@@ -316,10 +317,10 @@ class BinanceExportTests(ut.TestCase):
         test_df = pd.read_csv("tests/data/binance/transaction.csv")
         test_df.loc[2, const.BINANCE_UTC_TIME_COLUMN] = "2021-04-30 10:58:57"
 
-        with self.assertRaises(Exception) as cm:
+        with self.assertRaises(Exception) as context:
             export.read_export(test_df)
         self.assertEqual(
-            cm.exception.args,
+            context.exception.args,
             (
                 "UTC_Time values are not same.",
                 ["2021-04-30 10:58:56", "2021-04-30 10:58:56", "2021-04-30 10:58:57"],
@@ -329,25 +330,27 @@ class BinanceExportTests(ut.TestCase):
 
     def test_swap_exception(self):
         test_df = pd.read_csv("tests/data/binance/eth_staking.csv")
-        export = BinanceExport()
+        export = BinanceEarningExport()
 
         # test buy row not found
         test_df.loc[0, const.BINANCE_CHANGE_COLUMN] = -5
 
-        with self.assertRaises(Exception) as cm:
+        with self.assertRaises(Exception) as context:
             export.read_export(test_df)
         self.assertEqual(
-            cm.exception.args[0], "No buy row found.", "Exception argument are not same"
+            context.exception.args[0],
+            "No buy row found.",
+            "Exception argument are not same",
         )
 
         # test price row not found
         test_df = pd.read_csv("tests/data/binance/eth_staking.csv")
         test_df.loc[1, const.BINANCE_CHANGE_COLUMN] = 5
 
-        with self.assertRaises(Exception) as cm:
+        with self.assertRaises(Exception) as context:
             export.read_export(test_df)
         self.assertEqual(
-            cm.exception.args[0],
+            context.exception.args[0],
             "No price row found.",
             "Exception argument are not same",
         )
@@ -356,10 +359,10 @@ class BinanceExportTests(ut.TestCase):
         test_df = pd.read_csv("tests/data/binance/eth_staking.csv")
         test_df.loc[1, const.BINANCE_UTC_TIME_COLUMN] = "2021-05-13 23:11:33"
 
-        with self.assertRaises(Exception) as cm:
+        with self.assertRaises(Exception) as context:
             export.read_export(test_df)
         self.assertEqual(
-            cm.exception.args,
+            context.exception.args,
             (
                 "UTC_Time values are not same.",
                 ["2021-05-13 23:11:32", "2021-05-13 23:11:33"],

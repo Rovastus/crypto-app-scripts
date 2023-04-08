@@ -20,34 +20,35 @@ class BinanceEarningExport:
         while i < len(df.index):
             operation = df[const.BINANCE_OPERATION_COLUMN][i]
 
-            if (
-                operation in (const.BINANCE_DEPOSIT_OPERATION,
-                              const.BINANCE_FIAT_DEPOSIT_OPERATION,
-                              const.BINANCE_POS_SAVINGS_PURCHASE_OPERATION,
-                              const.BINANCE_POS_SAVINGS_REDEMPTION_OPERATION,
-                              const.BINANCE_SAVINGS_PURCHASE_OPERATION,
-                              const.BINANCE_SAVINGS_PRINCIPAL_REDEMPTION_OPERATION,
-                              const.BINANCE_SIMPLE_EARN_FLEXIBLE_SUBSCRIPTION_OPERATION,
-                              const.BINANCE_SIMPLE_EARN_FLEXIBLE_REDEMPTION_OPERATION,
-                              const.BINANCE_STAKING_PURCHASE_OPERATION,
-                              const.BINANCE_STAKING_REDEMPTION_OPERATION,
-                              const.BINANCE_SIMPLE_EARN_LOCKED_SUBSCRIPTION_OPERATION,
-                              const.BINANCE_SIMPLE_EARN_LOCKED_REDEMPTION_OPERATION)
+            if operation in (
+                const.BINANCE_DEPOSIT_OPERATION,
+                const.BINANCE_FIAT_DEPOSIT_OPERATION,
+                const.BINANCE_POS_SAVINGS_PURCHASE_OPERATION,
+                const.BINANCE_POS_SAVINGS_REDEMPTION_OPERATION,
+                const.BINANCE_SAVINGS_PURCHASE_OPERATION,
+                const.BINANCE_SAVINGS_PRINCIPAL_REDEMPTION_OPERATION,
+                const.BINANCE_SIMPLE_EARN_FLEXIBLE_SUBSCRIPTION_OPERATION,
+                const.BINANCE_SIMPLE_EARN_FLEXIBLE_REDEMPTION_OPERATION,
+                const.BINANCE_STAKING_PURCHASE_OPERATION,
+                const.BINANCE_STAKING_REDEMPTION_OPERATION,
+                const.BINANCE_SIMPLE_EARN_LOCKED_SUBSCRIPTION_OPERATION,
+                const.BINANCE_SIMPLE_EARN_LOCKED_REDEMPTION_OPERATION,
             ):
                 pass
             elif operation == const.BINANCE_WITHDRAWAL_OPERATION:
                 # can skip this operation as withdrawals export is used for this operation
                 pass
-            elif (operation in (const.BINANCE_BUY_OPERATION,
-                                const.BINANCE_TRANSACTION_RELATED_OPERATION,
-                                const.BINANCE_FEE_OPERATION)
+            elif operation in (
+                const.BINANCE_BUY_OPERATION,
+                const.BINANCE_TRANSACTION_RELATED_OPERATION,
+                const.BINANCE_FEE_OPERATION,
             ):
                 # can skip those operations as transaction export is used for those operation
                 pass
-            elif (
-                operation in (const.BINANCE_ETH_STAKING_TRANSACTION_OPERATION,
-                              const.BINANCE_SMALL_ASSETS_EXCHANGE_BNB_OPERATION,
-                              const.BINANCE_OTC_TRADING_OPERATION)
+            elif operation in (
+                const.BINANCE_ETH_STAKING_TRANSACTION_OPERATION,
+                const.BINANCE_SMALL_ASSETS_EXCHANGE_BNB_OPERATION,
+                const.BINANCE_OTC_TRADING_OPERATION,
             ):
                 # load two rows
                 row_1 = df.iloc[i]
@@ -84,20 +85,20 @@ class BinanceEarningExport:
                         ),
                     ]
                 )
-            elif (
-                operation in (const.BINANCE_EARN_OPERATION,
-                              const.BINANCE_STAKING_REWARDS_OPERATION,
-                              const.BINANCE_SIMPLE_EARN_FLEXIBLE_INTEREST_OPERATION,
-                              const.BINANCE_POS_SAVINGS_INTEREST_OPERATION,
-                              const.BINANCE_SAVINGS_INTEREST_OPERATION,
-                              const.BINANCE_ETH_STAKING_REWARDS_OPERATION,
-                              const.BINANCE_COMMISSION_FEE_OPERATION,
-                              const.BINANCE_COMMISION_HISTORY_OPERATION,
-                              const.BINANCE_REFERRAL_KICKBACK_OPERATION,
-                              const.BINANCE_SAVINGS_DISTRIBUTION_OPERATION,
-                              const.BINANCE_DOT_SLOT_AUCTION_REWARDS,
-                              const.BINANCE_DISTRIBUTION_OPERATION,
-                              const.BINANCE_SIMPLE_EARN_LOCKED_REWARDS_OPERATION)
+            elif operation in (
+                const.BINANCE_EARN_OPERATION,
+                const.BINANCE_STAKING_REWARDS_OPERATION,
+                const.BINANCE_SIMPLE_EARN_FLEXIBLE_INTEREST_OPERATION,
+                const.BINANCE_POS_SAVINGS_INTEREST_OPERATION,
+                const.BINANCE_SAVINGS_INTEREST_OPERATION,
+                const.BINANCE_ETH_STAKING_REWARDS_OPERATION,
+                const.BINANCE_COMMISSION_FEE_OPERATION,
+                const.BINANCE_COMMISION_HISTORY_OPERATION,
+                const.BINANCE_REFERRAL_KICKBACK_OPERATION,
+                const.BINANCE_SAVINGS_DISTRIBUTION_OPERATION,
+                const.BINANCE_DOT_SLOT_AUCTION_REWARDS,
+                const.BINANCE_DISTRIBUTION_OPERATION,
+                const.BINANCE_SIMPLE_EARN_LOCKED_REWARDS_OPERATION,
             ):
                 earn = df.iloc[i]
 

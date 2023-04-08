@@ -2,6 +2,7 @@ import json
 import pandas as pd
 import constant as const
 
+
 class BinanceWithdrawalExport:
     def __init__(self):
         self.new_df_data = []
@@ -26,8 +27,10 @@ class BinanceWithdrawalExport:
                     const.BINANCE_WITHDRAWAL_DESCRIPTION,
                     json.dumps(
                         {
-                            "fee": abs(record[const.BINANCE_WITHDRAWAL_TRANSACTION_FEE_COLUMM]),
-                            "feeCoin":record[const.BINANCE_WITHDRAWAL_COIN_COLUMM],
+                            "fee": abs(
+                                record[const.BINANCE_WITHDRAWAL_TRANSACTION_FEE_COLUMM]
+                            ),
+                            "feeCoin": record[const.BINANCE_WITHDRAWAL_COIN_COLUMM],
                         }
                     ),
                 ]

@@ -36,9 +36,11 @@ class PolkadotExport:
                         const.POLKADOT_TRANSFER_DESCRIPTION,
                         json.dumps(
                             {
-                                "fee": float(self.__get_fee(
-                                    df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
-                                ).copy_abs()),
+                                "fee": float(
+                                    self.__get_fee(
+                                        df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
+                                    ).copy_abs()
+                                ),
                                 "feeCoin": "DOT",
                             }
                         ),
@@ -53,9 +55,11 @@ class PolkadotExport:
                         const.POLKADOT_TRANSFER_DESCRIPTION,
                         json.dumps(
                             {
-                                "fee": float(self.__get_fee(
-                                    df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
-                                ).copy_abs()),
+                                "fee": float(
+                                    self.__get_fee(
+                                        df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
+                                    ).copy_abs()
+                                ),
                                 "feeCoin": "DOT",
                             }
                         ),
@@ -70,9 +74,11 @@ class PolkadotExport:
                         const.POLKADOT_EARN_DESCRIPTION,
                         json.dumps(
                             {
-                                "amount": float(self.__get_earn(
-                                    df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
-                                ).copy_abs()),
+                                "amount": float(
+                                    self.__get_earn(
+                                        df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
+                                    ).copy_abs()
+                                ),
                                 "coin": "DOT",
                             }
                         ),
@@ -87,10 +93,14 @@ class PolkadotExport:
         self.__check_timeout()
         payload = {"extrinsic_index": extrinsic_id}
 
-        response = requests.post(self.extrinsic_url, json=payload, headers=self.headers, timeout=100)
+        response = requests.post(
+            self.extrinsic_url, json=payload, headers=self.headers, timeout=100
+        )
 
         if response.status_code == 200:
-            return decimal.Decimal(response.json()["data"]["fee"]) / decimal.Decimal(10000000000)
+            return decimal.Decimal(response.json()["data"]["fee"]) / decimal.Decimal(
+                10000000000
+            )
 
         raise Exception("Error response from polkadot API", response)
 
@@ -98,7 +108,9 @@ class PolkadotExport:
         self.__check_timeout()
         payload = {"extrinsic_index": extrinsic_id, "row": 99}
 
-        response = requests.post(self.transactions_url, json=payload, headers=self.headers, timeout=100)
+        response = requests.post(
+            self.transactions_url, json=payload, headers=self.headers, timeout=100
+        )
 
         if response.status_code == 200:
             for transfer in response.json()["data"]["transfers"]:

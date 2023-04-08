@@ -1,6 +1,5 @@
 import json
 import pandas as pd
-
 import constant as const
 
 
@@ -45,11 +44,7 @@ class BinanceEarningExport:
             ):
                 # can skip those operations as transaction export is used for those operation
                 pass
-            elif operation in (
-                const.BINANCE_ETH_STAKING_TRANSACTION_OPERATION,
-                const.BINANCE_SMALL_ASSETS_EXCHANGE_BNB_OPERATION,
-                const.BINANCE_OTC_TRADING_OPERATION,
-            ):
+            elif operation == const.BINANCE_ETH_STAKING_TRANSACTION_OPERATION:
                 # load two rows
                 row_1 = df.iloc[i]
                 i += 1
@@ -86,21 +81,23 @@ class BinanceEarningExport:
                     ]
                 )
             elif operation in (
-                const.BINANCE_EARN_OPERATION,
                 const.BINANCE_STAKING_REWARDS_OPERATION,
                 const.BINANCE_SIMPLE_EARN_FLEXIBLE_INTEREST_OPERATION,
                 const.BINANCE_POS_SAVINGS_INTEREST_OPERATION,
                 const.BINANCE_SAVINGS_INTEREST_OPERATION,
                 const.BINANCE_ETH_STAKING_REWARDS_OPERATION,
-                const.BINANCE_COMMISSION_FEE_OPERATION,
-                const.BINANCE_COMMISION_HISTORY_OPERATION,
-                const.BINANCE_REFERRAL_KICKBACK_OPERATION,
                 const.BINANCE_SAVINGS_DISTRIBUTION_OPERATION,
                 const.BINANCE_DOT_SLOT_AUCTION_REWARDS,
                 const.BINANCE_DISTRIBUTION_OPERATION,
                 const.BINANCE_SIMPLE_EARN_LOCKED_REWARDS_OPERATION,
             ):
                 earn = df.iloc[i]
+                # remove LD from coin value when operation is const.BINANCE_SAVINGS_DISTRIBUTION_OPERATION
+                coin = (
+                    earn[const.BINANCE_COIN_COLUMN][2:]
+                    if operation == const.BINANCE_SAVINGS_DISTRIBUTION_OPERATION
+                    else earn[const.BINANCE_COIN_COLUMN]
+                )
 
                 # create new earn record
                 self.new_df_data.append(
@@ -111,7 +108,7 @@ class BinanceEarningExport:
                         json.dumps(
                             {
                                 "amount": abs(earn[const.BINANCE_CHANGE_COLUMN]),
-                                "coin": earn[const.BINANCE_COIN_COLUMN],
+                                "coin": coin,
                             }
                         ),
                     ]

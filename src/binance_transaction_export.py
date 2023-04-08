@@ -26,14 +26,31 @@ class BinanceTransactionExport:
         while i < len(df.index):
             record = df.iloc[i]
 
-            buy = self.__get_value_and_pair(
-                record[const.BINANCE_TRANSACTION_EXECUTED_COLUMM],
-                record[const.BINANCE_TRANSACTION_PAIR_COLUMM],
-            )
-            price = self.__get_value_and_pair(
-                record[const.BINANCE_TRANSACTION_AMOUNT_COLUMM],
-                record[const.BINANCE_TRANSACTION_PAIR_COLUMM],
-            )
+            buy = None
+            price = None
+            side = record[const.BINANCE_TRANSACTION_SIDE_COLUMM]
+
+            if side == const.BINANCE_TRANSACTION_SIDE_BUY_VALUE:
+                buy = self.__get_value_and_pair(
+                    record[const.BINANCE_TRANSACTION_EXECUTED_COLUMM],
+                    record[const.BINANCE_TRANSACTION_PAIR_COLUMM],
+                )
+                price = self.__get_value_and_pair(
+                    record[const.BINANCE_TRANSACTION_AMOUNT_COLUMM],
+                    record[const.BINANCE_TRANSACTION_PAIR_COLUMM],
+                )
+            elif side == const.BINANCE_TRANSACTION_SIDE_SELL_VALUE:
+                buy = self.__get_value_and_pair(
+                    record[const.BINANCE_TRANSACTION_AMOUNT_COLUMM],
+                    record[const.BINANCE_TRANSACTION_PAIR_COLUMM],
+                )
+                price = self.__get_value_and_pair(
+                    record[const.BINANCE_TRANSACTION_EXECUTED_COLUMM],
+                    record[const.BINANCE_TRANSACTION_PAIR_COLUMM],
+                )
+            else:
+                raise Exception("Unknown side value.", side)
+
             fee = self.__get_value_and_pair(
                 record[const.BINANCE_TRANSACTION_FEE_COLUMM],
                 record[const.BINANCE_TRANSACTION_PAIR_COLUMM],

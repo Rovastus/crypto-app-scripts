@@ -1,0 +1,11 @@
+User_ID,UTC_Time,Account,Operation,Coin,Change,Remark
+131068381,2021-05-08 03:07:14,Spot,POS savings purchase,DOT,-3.03288565,
+131068381,2021-06-02 00:21:42,Spot,POS savings redemption,BNB,0.29430632,
+131068381,2021-06-02 22:05:49,Spot,Savings purchase,BTC,-1.2e-07,
+131068381,2021-06-23 13:58:42,Spot,Savings Principal redemption,LINK,7.22609243,
+131068381,2022-01-01 17:48:48,Earn,Simple Earn Flexible Subscription,BTC,-0.00000519,""
+131068381,2022-01-01 23:05:59,Earn,Simple Earn Flexible Redemption,SOL,0.63694707,""
+131068381,2022-01-01 23:06:17,Spot,Staking Purchase,SOL,-1.28907681,""
+131068381,2022-01-02 00:46:25,Spot,Staking Redemption,SOL,0.57063206,""
+131068381,2022-10-02 15:43:18,Spot,Simple Earn Locked Subscription,SOL,-4.13609635,""
+131068381,2022-11-28 01:42:01,Spot,Simple Earn Locked Redemption,DOT,22.05598784,""

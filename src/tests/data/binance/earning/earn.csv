@@ -1,0 +1,10 @@
+User_ID,UTC_Time,Account,Operation,Coin,Change,Remark
+131068381,2022-01-01 00:54:09,Spot,Staking Rewards,DOT,0.00546990,""
+131068381,2022-01-01 03:17:32,Earn,Simple Earn Flexible Interest,RUNE,0.00066963,""
+131068381,2021-05-03 02:17:13,Spot,POS savings interest,BNB,0.00011926,
+131068381,2021-05-12 08:29:49,Spot,Savings Interest,LTC,5.36e-06,
+131068381,2021-05-30 08:26:20,Spot,ETH 2.0 Staking Rewards,BETH,6.71e-06,
+131068381,2022-01-01 17:48:48,Spot,Savings Distribution,LDBTC,0.00000519,""
+131068381,2022-01-19 21:57:27,Spot,DOT Slot Auction Rewards,GLMR,8.63002252,""
+131068381,2022-09-19 17:23:02,Spot,Distribution,ETHW,0.00006820,""
+131068381,2022-09-27 02:05:03,Spot,Simple Earn Locked Rewards,DOT,0.00318359,""

@@ -22,14 +22,21 @@ class BinanceExport:
 
             if (
                 operation == const.BINANCE_DEPOSIT_OPERATION
+                or operation == const.BINANCE_FIAT_DEPOSIT_OPERATION
                 or operation == const.BINANCE_POS_SAVINGS_PURCHASE_OPERATION
                 or operation == const.BINANCE_POS_SAVINGS_REDEMPTION_OPERATION
                 or operation == const.BINANCE_SAVINGS_PURCHASE_OPERATION
                 or operation == const.BINANCE_SAVINGS_PRINCIPAL_REDEMPTION_OPERATION
+                or operation == const.BINANCE_SIMPLE_EARN_FLEXIBLE_SUBSCRIPTION_OPERATION
+                or operation == const.BINANCE_SIMPLE_EARN_FLEXIBLE_REDEMPTION_OPERATION
+                or operation == const.BINANCE_STAKING_PURCHASE_OPERATION
+                or operation == const.BINANCE_STAKING_REDEMPTION_OPERATION
+                or operation == const.BINANCE_SIMPLE_EARN_LOCKED_SUBSCRIPTION_OPERATION
+                or operation == const.BINANCE_SIMPLE_EARN_LOCKED_REDEMPTION_OPERATION
             ):
                 pass
             elif operation == const.BINANCE_WITHDRAWAL_OPERATION:
-                # TODO: create Transfer operation
+                # can skip this operation as for withdrawals withdraw.csv file is used
                 pass
             elif operation == const.BINANCE_BUY_OPERATION:
                 # load buy, transaction related and fee rows
@@ -120,12 +127,18 @@ class BinanceExport:
                 )
             elif (
                 operation == const.BINANCE_EARN_OPERATION
+                or operation == const.BINANCE_STAKING_REWARDS_OPERATION
+                or operation == const.BINANCE_SIMPLE_EARN_FLEXIBLE_INTEREST_OPERATION
                 or operation == const.BINANCE_POS_SAVINGS_INTEREST_OPERATION
                 or operation == const.BINANCE_SAVINGS_INTEREST_OPERATION
                 or operation == const.BINANCE_ETH_STAKING_REWARDS_OPERATION
                 or operation == const.BINANCE_COMMISSION_FEE_OPERATION
                 or operation == const.BINANCE_COMMISION_HISTORY_OPERATION
                 or operation == const.BINANCE_REFERRAL_KICKBACK_OPERATION
+                or operation == const.BINANCE_SAVINGS_DISTRIBUTION_OPERATION
+                or operation == const.BINANCE_DOT_SLOT_AUCTION_REWARDS
+                or operation == const.BINANCE_DISTRIBUTION_OPERATION
+                or operation == const.BINANCE_SIMPLE_EARN_LOCKED_REWARDS_OPERATION
             ):
                 earn = df.iloc[i]
 

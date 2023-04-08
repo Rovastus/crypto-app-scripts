@@ -7,13 +7,14 @@ import constant as const
 import refactor.binance_export_refactor as ber
 import refactor.kraken_export_refactor as ker
 import binance_export as be
+import binance_withdrawal_export as bwe
 import kraken_export as ke
 import solana_export as sol
 import polkadot_export as dot
 
 
 def __refactor_binance_export(root, files, year, output):
-    transactions = pd.read_csv(root + "\\" + "transactions.csv")
+    transactions = pd.read_csv(root + "\\transactions.csv")
     export_refactor = ber.BinanceExportRefactor()
     ref_files = []
 
@@ -29,8 +30,7 @@ def __refactor_binance_export(root, files, year, output):
 
     return ref_files
 
-
-def __crypto_app_binance_export(root, ref_files, output):
+def __crypto_app_binance_export(root, ref_files, output, contains_withdraws):
     crypto_app_export = None
 
     for file in ref_files:
@@ -41,7 +41,17 @@ def __crypto_app_binance_export(root, ref_files, output):
         if crypto_app_export is None:
             crypto_app_export = binance_export.get_df()
         else:
-            crypto_app_export = crypto_app_export.append(binance_export.get_df())
+            crypto_app_export = pd.concat([crypto_app_export,binance_export.get_df()])
+
+    if contains_withdraws:
+        print("Processing binance withdraw export: " + root + "\\withdrawals.csv")
+        binance_export_withdrawal = bwe.BinanceWithdrawalExport()
+        withdrawal_export = pd.read_csv(root + "\\withdrawals.csv")
+        binance_export_withdrawal.read_export(withdrawal_export)
+        if crypto_app_export is None:
+            crypto_app_export = binance_export_withdrawal.get_df()
+        else:
+            crypto_app_export =  pd.concat([crypto_app_export, binance_export_withdrawal.get_df()])
 
     print("Saving crypto-app binance export file: " + output + "\\" + "binance.csv")
     crypto_app_export.to_csv(output + "\\" + "binance.csv", index=False)
@@ -75,7 +85,7 @@ def __crypto_app_kraken_export(root, ref_files, output):
         if crypto_app_export is None:
             crypto_app_export = kraken_export.get_df()
         else:
-            crypto_app_export = crypto_app_export.append(kraken_export.get_df())
+            crypto_app_export = pd.concat([crypto_app_export, kraken_export.get_df()])
 
     print("Saving crypto-app kraken export file: " + output + "\\" + "kraken.csv")
     crypto_app_export.to_csv(output + "\\" + "kraken.csv", index=False)
@@ -92,7 +102,7 @@ def __crypto_app_solana_export(root, ref_files, output):
         if crypto_app_export is None:
             crypto_app_export = solana_export.get_df()
         else:
-            crypto_app_export = crypto_app_export.append(solana_export.get_df())
+            crypto_app_export = pd.concat([crypto_app_export, solana_export.get_df()])
 
     print("Saving crypto-app solana export file: " + output + "\\" + "solana.csv")
     crypto_app_export.to_csv(output + "\\" + "solana.csv", index=False)
@@ -109,7 +119,7 @@ def __crypto_app_polkadot_export(root, ref_files, output):
         if crypto_app_export is None:
             crypto_app_export = polkadot_export.get_df()
         else:
-            crypto_app_export = crypto_app_export.append(polkadot_export.get_df())
+            crypto_app_export = pd.concat([crypto_app_export, polkadot_export.get_df()])
 
     print("Saving crypto-app polkadot export file: " + output + "\\" + "polkadot.csv")
     crypto_app_export.to_csv(output + "\\" + "polkadot.csv", index=False)
@@ -138,7 +148,7 @@ if __name__ == "__main__":
             ref_files = __refactor_binance_export(
                 root, files, args.year, str(args.output)
             )
-            __crypto_app_binance_export(root, ref_files, str(args.output))
+            __crypto_app_binance_export(root, ref_files, str(args.output), 'withdrawals.csv' in files)
 
         if root.endswith(const.KRAKEN_DIR):
             print("Kraken")

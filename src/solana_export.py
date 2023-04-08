@@ -1,6 +1,5 @@
 import json
 import pandas as pd
-
 import constant as const
 
 
@@ -18,11 +17,11 @@ class SolanaExport:
     def read_export(self, df):
         i = 0
         while i < len(df.index):
-            type = df[const.SOLANA_TX_TYPE_COLUMN][i]
+            type_value = df[const.SOLANA_TX_TYPE_COLUMN][i]
 
-            if type == const.SOLANA_TRANSFER_TYPE:
+            if type_value == const.SOLANA_TRANSFER_TYPE:
                 pass
-            elif type == const.SOLANA_STAKING_TYPE:
+            elif type_value == const.SOLANA_STAKING_TYPE:
                 self.new_df_data.append(
                     [
                         df[const.SOLANA_UTC_TIME_COLUMN][i],
@@ -30,13 +29,13 @@ class SolanaExport:
                         const.SOLANA_EARN_DESCRIPTION,
                         json.dumps(
                             {
-                                "amount": df[const.SOLANA_RECEIVED_AMOUNT][i],
+                                "amount": abs(df[const.SOLANA_RECEIVED_AMOUNT][i]),
                                 "coin": df[const.SOLANA_RECEIVED_CURRENCY_COLUMN][i],
                             }
                         ),
                     ]
                 )
-            elif type == const.SOLANA_SPEND_TYPE:
+            elif type_value == const.SOLANA_SPEND_TYPE:
                 # create new record
                 self.new_df_data.append(
                     [
@@ -45,13 +44,13 @@ class SolanaExport:
                         const.SOLANA_SPEND_DESCRIPTION,
                         json.dumps(
                             {
-                                "fee": df[const.SOLANA_SENT_AMOUNT_COLUMN][i],
+                                "fee": abs(df[const.SOLANA_SENT_AMOUNT_COLUMN][i]),
                                 "feeCoin": df[const.SOLANA_SENT_CURRENCY_COLUMN][i],
                             }
                         ),
                     ]
                 )
             else:
-                raise Exception("Unexpected type.", type)
+                raise Exception("Unexpected type.", type_value)
 
             i += 1

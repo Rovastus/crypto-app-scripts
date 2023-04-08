@@ -17,6 +17,7 @@ class BinanceWithdrawalExport:
         i = 0
         while i < len(df.index):
             record = df.iloc[i]
+
             # create transfer new record
             self.new_df_data.append(
                 [
@@ -25,7 +26,7 @@ class BinanceWithdrawalExport:
                     const.BINANCE_WITHDRAWAL_DESCRIPTION,
                     json.dumps(
                         {
-                            "fee": record[const.BINANCE_WITHDRAWAL_TRANSACTION_FEE_COLUMM],
+                            "fee": abs(record[const.BINANCE_WITHDRAWAL_TRANSACTION_FEE_COLUMM]),
                             "feeCoin":record[const.BINANCE_WITHDRAWAL_COIN_COLUMM],
                         }
                     ),

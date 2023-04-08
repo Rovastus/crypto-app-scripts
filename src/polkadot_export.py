@@ -1,9 +1,8 @@
 import json
-import pandas as pd
 import time
-import requests
 import decimal
-
+import pandas as pd
+import requests
 import constant as const
 
 
@@ -26,9 +25,9 @@ class PolkadotExport:
     def read_export(self, df):
         i = 0
         while i < len(df.index):
-            type = df[const.POLKADOT_ACTION_COLUMN][i]
+            action = df[const.POLKADOT_ACTION_COLUMN][i]
 
-            if type == const.POLKADOT_JOIN_NOMINATION_POOLS_ACTION:
+            if action == const.POLKADOT_JOIN_NOMINATION_POOLS_ACTION:
                 # create transfer record
                 self.new_df_data.append(
                     [
@@ -37,15 +36,15 @@ class PolkadotExport:
                         const.POLKADOT_TRANSFER_DESCRIPTION,
                         json.dumps(
                             {
-                                "fee": self.__get_fee(
+                                "fee": float(self.__get_fee(
                                     df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
-                                ),
+                                ).copy_abs()),
                                 "feeCoin": "DOT",
                             }
                         ),
                     ]
                 )
-            elif type == const.POLKADOT_BOND_EXTRA_NOMINATION_POOLS_ACTION:
+            elif action == const.POLKADOT_BOND_EXTRA_NOMINATION_POOLS_ACTION:
                 # create transfer record
                 self.new_df_data.append(
                     [
@@ -54,9 +53,9 @@ class PolkadotExport:
                         const.POLKADOT_TRANSFER_DESCRIPTION,
                         json.dumps(
                             {
-                                "fee": self.__get_fee(
+                                "fee": float(self.__get_fee(
                                     df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
-                                ),
+                                ).copy_abs()),
                                 "feeCoin": "DOT",
                             }
                         ),
@@ -71,16 +70,16 @@ class PolkadotExport:
                         const.POLKADOT_EARN_DESCRIPTION,
                         json.dumps(
                             {
-                                "amount": self.__get_earn(
+                                "amount": float(self.__get_earn(
                                     df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
-                                ),
+                                ).copy_abs()),
                                 "coin": "DOT",
                             }
                         ),
                     ]
                 )
             else:
-                raise Exception("Unexpected type.", type)
+                raise Exception("Unexpected type.", action)
 
             i += 1
 
@@ -88,20 +87,18 @@ class PolkadotExport:
         self.__check_timeout()
         payload = {"extrinsic_index": extrinsic_id}
 
-        response = requests.post(self.extrinsic_url, json=payload, headers=self.headers)
+        response = requests.post(self.extrinsic_url, json=payload, headers=self.headers, timeout=100)
 
         if response.status_code == 200:
-            return str(decimal.Decimal(response.json()["data"]["fee"]) / 10000000000)
-        else:
-            raise Exception("Error response from polkadot API", response)
+            return decimal.Decimal(response.json()["data"]["fee"]) / decimal.Decimal(10000000000)
+
+        raise Exception("Error response from polkadot API", response)
 
     def __get_earn(self, extrinsic_id):
         self.__check_timeout()
         payload = {"extrinsic_index": extrinsic_id, "row": 99}
 
-        response = requests.post(
-            self.transactions_url, json=payload, headers=self.headers
-        )
+        response = requests.post(self.transactions_url, json=payload, headers=self.headers, timeout=100)
 
         if response.status_code == 200:
             for transfer in response.json()["data"]["transfers"]:
@@ -109,10 +106,10 @@ class PolkadotExport:
                 if "display" in from_account_display and from_account_display[
                     "display"
                 ].endswith("(Reward)"):
-                    return transfer["amount"]
+                    return decimal.Decimal(transfer["amount"])
             raise Exception("Reward amount not found.")
-        else:
-            raise Exception("Error response from polkadot API.", response)
+
+        raise Exception("Error response from polkadot API.", response)
 
     def __check_timeout(self):
         self.call_counter = self.call_counter + 1

@@ -17,12 +17,15 @@ TRANSFER_OPERATION = "Transfer"
 EARN_OPERATION = "Earn"
 
 # crypto-app dir names
-BINANCE_DIR = "\\binance"
-KRAKEN_DIR = "\\kraken"
-BTC_DIR = "\\btc"
-ETH_DIR = "\\eth"
-DOT_DIR = "\\dot"
-SOL_DIR = "\\sol"
+BINANCE_DIR_PATH = "\\binance"
+BINANCE_TRANSACTION_EXPORT_NAME = "transaction"
+BINANCE_EARNING_EXPORT_NAME = "earning"
+BINANCE_WITHDRAWAL_EXPORT_NAME = "withdrawal"
+KRAKEN_DIR_PATH = "\\kraken"
+BTC_DIR_PATH = "\\btc"
+ETH_DIR_PATH = "\\eth"
+DOT_DIR_PATH = "\\dot"
+SOL_DIR_PATH = "\\sol"
 
 # binance export columns
 BINANCE_UTC_TIME_COLUMN = "UTC_Time"
@@ -37,6 +40,12 @@ BINANCE_WITHDRAWAL_UTC_TIME_COLUMM = "Date(UTC)"
 BINANCE_WITHDRAWAL_COIN_COLUMM = "Coin"
 BINANCE_WITHDRAWAL_TRANSACTION_FEE_COLUMM = "TransactionFee"
 
+# binance transaction export columns
+BINANCE_TRANSACTION_UTC_TIME_COLUMM = "Date(UTC)"
+BINANCE_TRANSACTION_PAIR_COLUMM = "Pair"
+BINANCE_TRANSACTION_EXECUTED_COLUMM = "Executed"
+BINANCE_TRANSACTION_AMOUNT_COLUMM = "Amount"
+BINANCE_TRANSACTION_FEE_COLUMM = "Fee"
 
 # binance operations
 BINANCE_BUY_OPERATION = "Buy"
@@ -81,6 +90,7 @@ BINANCE_TRANSACTION_DESCRIPTION = "Binance transaction"
 BINANCE_EARN_DESCRIPTION = "Binance earn"
 
 # kraken export columns
+KRAKEN_TXID_COLUMN = "txid"
 KRAKEN_REFID_COLUMN = "refid"
 KRAKEN_UTC_TIME_COLUMN = "time"
 KRAKEN_TYPE_COLUMN = "type"

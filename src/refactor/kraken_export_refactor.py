@@ -38,7 +38,6 @@ class KrakenExportRefactor:
             "SOL": "SOL",
             "UNI": "UNI",
             "XETH": "ETH",
-            "ETH2": "ETH2",
             "XLTC": "LTC",
             "XBT": "BTC",
             "XXBT": "BTC",

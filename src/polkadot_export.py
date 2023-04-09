@@ -41,7 +41,7 @@ class PolkadotExport:
                                         df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
                                     ).copy_abs()
                                 ),
-                                "feeCoin": "DOT",
+                                "coin": "DOT",
                             }
                         ),
                     ]
@@ -60,7 +60,7 @@ class PolkadotExport:
                                         df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
                                     ).copy_abs()
                                 ),
-                                "feeCoin": "DOT",
+                                "coin": "DOT",
                             }
                         ),
                     ]

@@ -1,0 +1,4 @@
+timestamp,tx_type,received_amount,received_currency,sent_amount,sent_currency,fee,fee_currency,comment,txid,url,exchange,wallet_address
+2022-12-09 17:47:15,STAKING,0.01380075,SOL,,,,,,GozD92CCLcrzguaSd889bDPpYd4hTbXu6GownGHhPbnk.383,,solana_blockchain,94a1uhGCwT9PXsC7Qp3bHVeBnwiZPKixdbudhSYCxzTd
+2022-12-06 22:31:38,SPEND,,,0.000005000,SOL,,,fee for _STAKING_DELEGATE,3MU3CfwzgQ5DMYcJH5eaXfiQmbhb37qgaqmHbigE7cSncFdy9D6NepEN2CY6ng2Gg2oritEAo2ZC7tTxvPMT87Xg,https://solscan.io/tx/3MU3CfwzgQ5DMYcJH5eaXfiQmbhb37qgaqmHbigE7cSncFdy9D6NepEN2CY6ng2Gg2oritEAo2ZC7tTxvPMT87Xg,solana_blockchain,94a1uhGCwT9PXsC7Qp3bHVeBnwiZPKixdbudhSYCxzTd
+2022-12-06 22:15:44,TRANSFER,27.30318,SOL,,,,,,2GPLFFF3QRo5ogaVnwn3GC8bWDc9NbMVrZj1GTrqNChrUK3vh256zt9yqWA5662Zq4s96npgkw7YQ2Qyh82orA95,https://solscan.io/tx/2GPLFFF3QRo5ogaVnwn3GC8bWDc9NbMVrZj1GTrqNChrUK3vh256zt9yqWA5662Zq4s96npgkw7YQ2Qyh82orA95,solana_blockchain,94a1uhGCwT9PXsC7Qp3bHVeBnwiZPKixdbudhSYCxzTd

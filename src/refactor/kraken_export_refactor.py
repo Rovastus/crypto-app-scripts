@@ -52,9 +52,6 @@ class KrakenExportRefactor:
                 df[const.KRAKEN_ASSET_COLUMN][i]
             )
 
-            if df[const.KRAKEN_FEE_COLUMN][i] > 0:
-                df.loc[i, const.KRAKEN_FEE_COLUMN] = -df[const.KRAKEN_FEE_COLUMN][i]
-
     def __get_converted_asset(self, asset):
         if asset.count(".") == 1:
             asset = asset.split(".")[0]

@@ -30,7 +30,7 @@ class BinanceWithdrawalExport:
                             "fee": abs(
                                 record[const.BINANCE_WITHDRAWAL_TRANSACTION_FEE_COLUMM]
                             ),
-                            "feeCoin": record[const.BINANCE_WITHDRAWAL_COIN_COLUMM],
+                            "coin": record[const.BINANCE_WITHDRAWAL_COIN_COLUMM],
                         }
                     ),
                 ]

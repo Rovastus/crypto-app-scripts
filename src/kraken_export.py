@@ -111,7 +111,7 @@ class KrakenExport:
                             json.dumps(
                                 {
                                     "fee": abs(df[const.KRAKEN_FEE_COLUMN][i]),
-                                    "feeCoin": df[const.KRAKEN_ASSET_COLUMN][i],
+                                    "coin": df[const.KRAKEN_ASSET_COLUMN][i],
                                 }
                             ),
                         ]

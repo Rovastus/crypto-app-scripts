@@ -6,34 +6,34 @@ import refactor.kraken_export_refactor as ker
 
 class KrakenExportRefactorTests(ut.TestCase):
     def test_refactor(self):
-        test_df = pd.read_csv("tests/data/kraken/refactor.csv")
-        exportRefactor = ker.KrakenExportRefactor()
-        exportRefactor.refactor(test_df)
+        test_df = pd.read_csv("tests/data/kraken/refactor/refactor.csv")
+        export_refactor = ker.KrakenExportRefactor()
+        export_refactor.refactor(test_df)
 
         self.assertEqual(len(test_df), 11, "Unexpected size")
 
-        expectedResults = [
+        expected_results = [
             {"asset": "BTC", "fee": 0.0},
             {"asset": "DOT", "fee": 0.0},
             {"asset": "SOL", "fee": 0.0},
             {"asset": "KSM", "fee": 0.0},
             {"asset": "ETH2", "fee": 0.0},
             {"asset": "ETH", "fee": 0.0},
-            {"asset": "EUR", "fee": -1.0399},
+            {"asset": "EUR", "fee": 1.0399},
             {"asset": "BTC", "fee": 0.0},
             {"asset": "ETH", "fee": 0.0},
             {"asset": "ETH2", "fee": 0.0},
             {"asset": "ETH2", "fee": 0.0},
         ]
 
-        for i, element in enumerate(expectedResults):
+        for i, element in enumerate(expected_results):
             self.assertEqual(
                 test_df[const.KRAKEN_ASSET_COLUMN][i],
                 element["asset"],
-                "Unexpected asset on index {}".format(i),
+                f"Unexpected asset on index {i}",
             )
             self.assertEqual(
                 test_df[const.KRAKEN_FEE_COLUMN][i],
                 element["fee"],
-                "Unexpected fee on index {}".format(i),
+                f"Unexpected asset on index {i}",
             )

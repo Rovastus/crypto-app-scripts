@@ -43,13 +43,13 @@ Scripts for creating the exports files which are used by crypto-app.
   | Field name | Field description |
   | ------------- | ------------- |
   | fee | The amount which was paid as fee |
-  | feeCoin | The sticker of the coin which was paid as fee |
+  | coin | The sticker of the coin which was paid as fee |
 
 - Example
   ```javascript
     {
       "fee": 1,
-      "feeCoin": "BTC",
+      "coin": "BTC",
     }
   ```
 

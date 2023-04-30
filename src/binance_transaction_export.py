@@ -64,11 +64,11 @@ class BinanceTransactionExport:
                     const.BINANCE_TRANSACTION_DESCRIPTION,
                     json.dumps(
                         {
-                            "buy": abs(buy[0]),
+                            "buy": str(abs(buy[0])),
                             "buyCoin": buy[1],
-                            "price": abs(price[0]),
+                            "price": str(abs(price[0])),
                             "priceCoin": price[1],
-                            "fee": abs(fee[0]),
+                            "fee": str(abs(fee[0])),
                             "feeCoin": fee[1],
                         }
                     ),

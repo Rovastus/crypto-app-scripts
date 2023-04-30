@@ -70,11 +70,11 @@ class BinanceEarningExport:
                         const.BINANCE_TRANSACTION_DESCRIPTION,
                         json.dumps(
                             {
-                                "buy": abs(buy[const.BINANCE_CHANGE_COLUMN]),
+                                "buy": str(abs(buy[const.BINANCE_CHANGE_COLUMN])),
                                 "buyCoin": buy[const.BINANCE_COIN_COLUMN],
-                                "price": abs(price[const.BINANCE_CHANGE_COLUMN]),
+                                "price": str(abs(price[const.BINANCE_CHANGE_COLUMN])),
                                 "priceCoin": price[const.BINANCE_COIN_COLUMN],
-                                "fee": 0,
+                                "fee": "0",
                                 "feeCoin": buy[const.BINANCE_COIN_COLUMN],
                             }
                         ),
@@ -107,7 +107,7 @@ class BinanceEarningExport:
                         const.BINANCE_EARN_DESCRIPTION,
                         json.dumps(
                             {
-                                "amount": abs(earn[const.BINANCE_CHANGE_COLUMN]),
+                                "amount": str(abs(earn[const.BINANCE_CHANGE_COLUMN])),
                                 "coin": coin,
                             }
                         ),

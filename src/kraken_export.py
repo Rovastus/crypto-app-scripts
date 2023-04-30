@@ -30,7 +30,7 @@ class KrakenExport:
                         const.KRAKEN_EARN_DESCRIPTION,
                         json.dumps(
                             {
-                                "amount": abs(df[const.KRAKEN_AMOUNT_COLUMN][i]),
+                                "amount": str(abs(df[const.KRAKEN_AMOUNT_COLUMN][i])),
                                 "coin": df[const.KRAKEN_ASSET_COLUMN][i],
                             }
                         ),
@@ -66,11 +66,11 @@ class KrakenExport:
                         const.KRAKEN_TRANSACTION_DESCRIPTION,
                         json.dumps(
                             {
-                                "buy": abs(buy[const.KRAKEN_AMOUNT_COLUMN]),
+                                "buy": str(abs(buy[const.KRAKEN_AMOUNT_COLUMN])),
                                 "buyCoin": buy[const.KRAKEN_ASSET_COLUMN],
-                                "price": abs(price[const.KRAKEN_AMOUNT_COLUMN]),
+                                "price": str(abs(price[const.KRAKEN_AMOUNT_COLUMN])),
                                 "priceCoin": price[const.KRAKEN_ASSET_COLUMN],
-                                "fee": abs(price[const.KRAKEN_FEE_COLUMN]),
+                                "fee": str(abs(price[const.KRAKEN_FEE_COLUMN])),
                                 "feeCoin": price[const.KRAKEN_ASSET_COLUMN],
                             }
                         ),
@@ -90,11 +90,13 @@ class KrakenExport:
                             const.KRAKEN_TRANSACTION_DESCRIPTION,
                             json.dumps(
                                 {
-                                    "buy": abs(df[const.KRAKEN_AMOUNT_COLUMN][i]),
+                                    "buy": str(abs(df[const.KRAKEN_AMOUNT_COLUMN][i])),
                                     "buyCoin": "ETH2",
-                                    "price": abs(df[const.KRAKEN_AMOUNT_COLUMN][i]),
+                                    "price": str(
+                                        abs(df[const.KRAKEN_AMOUNT_COLUMN][i])
+                                    ),
                                     "priceCoin": df[const.KRAKEN_ASSET_COLUMN][i],
-                                    "fee": 0,
+                                    "fee": "0",
                                     "feeCoin": "ETH",
                                 }
                             ),
@@ -110,7 +112,7 @@ class KrakenExport:
                             const.KRAKEN_TRANSFER_DESCRIPTION,
                             json.dumps(
                                 {
-                                    "fee": abs(df[const.KRAKEN_FEE_COLUMN][i]),
+                                    "fee": str(abs(df[const.KRAKEN_FEE_COLUMN][i])),
                                     "coin": df[const.KRAKEN_ASSET_COLUMN][i],
                                 }
                             ),

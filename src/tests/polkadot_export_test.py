@@ -19,21 +19,21 @@ class PolkadotExportTest(ut.TestCase):
                 "2022-12-08 20:07:00",
                 const.TRANSFER_OPERATION,
                 const.POLKADOT_TRANSFER_DESCRIPTION,
-                '{"fee": 0.0150704642, "coin": "DOT"}',
+                '{"fee": "0.0150704642", "coin": "DOT"}',
             ],
             [
                 1,
                 "2022-12-08 20:07:00",
                 const.EARN_OPERATION,
                 const.POLKADOT_EARN_DESCRIPTION,
-                '{"amount": 0.1819792507, "coin": "DOT"}',
+                '{"amount": "0.1819792507", "coin": "DOT"}',
             ],
             [
                 2,
                 "2022-12-04 21:43:48",
                 const.TRANSFER_OPERATION,
                 const.POLKADOT_TRANSFER_DESCRIPTION,
-                '{"fee": 0.0145475637, "coin": "DOT"}',
+                '{"fee": "0.0145475637", "coin": "DOT"}',
             ],
         ]:
             result_row = result_df.iloc[test_case[0]]

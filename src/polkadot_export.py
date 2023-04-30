@@ -36,7 +36,7 @@ class PolkadotExport:
                         const.POLKADOT_TRANSFER_DESCRIPTION,
                         json.dumps(
                             {
-                                "fee": float(
+                                "fee": str(
                                     self.__get_fee(
                                         df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
                                     ).copy_abs()
@@ -55,7 +55,7 @@ class PolkadotExport:
                         const.POLKADOT_TRANSFER_DESCRIPTION,
                         json.dumps(
                             {
-                                "fee": float(
+                                "fee": str(
                                     self.__get_fee(
                                         df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
                                     ).copy_abs()
@@ -74,7 +74,7 @@ class PolkadotExport:
                         const.POLKADOT_EARN_DESCRIPTION,
                         json.dumps(
                             {
-                                "amount": float(
+                                "amount": str(
                                     self.__get_earn(
                                         df[const.POLKADOT_EXTRINSIC_ID_COLUMN][i]
                                     ).copy_abs()

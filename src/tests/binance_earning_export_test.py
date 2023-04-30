@@ -35,63 +35,63 @@ class BinanceEarningExportTest(ut.TestCase):
                 "2022-01-01 00:54:09",
                 const.EARN_OPERATION,
                 const.BINANCE_EARN_DESCRIPTION,
-                '{"amount": 0.0054699, "coin": "DOT"}',
+                '{"amount": "0.0054699", "coin": "DOT"}',
             ],
             [
                 1,
                 "2022-01-01 03:17:32",
                 const.EARN_OPERATION,
                 const.BINANCE_EARN_DESCRIPTION,
-                '{"amount": 0.00066963, "coin": "RUNE"}',
+                '{"amount": "0.00066963", "coin": "RUNE"}',
             ],
             [
                 2,
                 "2021-05-03 02:17:13",
                 const.EARN_OPERATION,
                 const.BINANCE_EARN_DESCRIPTION,
-                '{"amount": 0.00011926, "coin": "BNB"}',
+                '{"amount": "0.00011926", "coin": "BNB"}',
             ],
             [
                 3,
                 "2021-05-12 08:29:49",
                 const.EARN_OPERATION,
                 const.BINANCE_EARN_DESCRIPTION,
-                '{"amount": 5.36e-06, "coin": "LTC"}',
+                '{"amount": "5.36e-06", "coin": "LTC"}',
             ],
             [
                 4,
                 "2021-05-30 08:26:20",
                 const.EARN_OPERATION,
                 const.BINANCE_EARN_DESCRIPTION,
-                '{"amount": 6.71e-06, "coin": "BETH"}',
+                '{"amount": "6.71e-06", "coin": "BETH"}',
             ],
             [
                 5,
                 "2022-01-01 17:48:48",
                 const.EARN_OPERATION,
                 const.BINANCE_EARN_DESCRIPTION,
-                '{"amount": 5.19e-06, "coin": "BTC"}',
+                '{"amount": "5.19e-06", "coin": "BTC"}',
             ],
             [
                 6,
                 "2022-01-19 21:57:27",
                 const.EARN_OPERATION,
                 const.BINANCE_EARN_DESCRIPTION,
-                '{"amount": 8.63002252, "coin": "GLMR"}',
+                '{"amount": "8.63002252", "coin": "GLMR"}',
             ],
             [
                 7,
                 "2022-09-19 17:23:02",
                 const.EARN_OPERATION,
                 const.BINANCE_EARN_DESCRIPTION,
-                '{"amount": 6.82e-05, "coin": "ETHW"}',
+                '{"amount": "6.82e-05", "coin": "ETHW"}',
             ],
             [
                 8,
                 "2022-09-27 02:05:03",
                 const.EARN_OPERATION,
                 const.BINANCE_EARN_DESCRIPTION,
-                '{"amount": 0.00318359, "coin": "DOT"}',
+                '{"amount": "0.00318359", "coin": "DOT"}',
             ],
         ]:
             result_row = result_df.iloc[test_case[0]]
@@ -142,7 +142,7 @@ class BinanceEarningExportTest(ut.TestCase):
         )
         self.assertEqual(
             result_row[const.BINANCE_DATA_COLUMN],
-            '{"buy": 0.035, "buyCoin": "BETH", "price": 0.035, "priceCoin": "ETH", "fee": 0, "feeCoin": "BETH"}',
+            '{"buy": "0.035", "buyCoin": "BETH", "price": "0.035", "priceCoin": "ETH", "fee": "0", "feeCoin": "BETH"}',
             "Unexpected data",
         )
 

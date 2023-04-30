@@ -29,7 +29,7 @@ class SolanaExport:
                         const.SOLANA_EARN_DESCRIPTION,
                         json.dumps(
                             {
-                                "amount": abs(df[const.SOLANA_RECEIVED_AMOUNT][i]),
+                                "amount": str(abs(df[const.SOLANA_RECEIVED_AMOUNT][i])),
                                 "coin": df[const.SOLANA_RECEIVED_CURRENCY_COLUMN][i],
                             }
                         ),
@@ -44,7 +44,7 @@ class SolanaExport:
                         const.SOLANA_SPEND_DESCRIPTION,
                         json.dumps(
                             {
-                                "fee": abs(df[const.SOLANA_SENT_AMOUNT_COLUMN][i]),
+                                "fee": str(abs(df[const.SOLANA_SENT_AMOUNT_COLUMN][i])),
                                 "coin": df[const.SOLANA_SENT_CURRENCY_COLUMN][i],
                             }
                         ),

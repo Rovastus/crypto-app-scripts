@@ -27,8 +27,12 @@ class BinanceWithdrawalExport:
                     const.BINANCE_WITHDRAWAL_DESCRIPTION,
                     json.dumps(
                         {
-                            "fee": abs(
-                                record[const.BINANCE_WITHDRAWAL_TRANSACTION_FEE_COLUMM]
+                            "fee": str(
+                                abs(
+                                    record[
+                                        const.BINANCE_WITHDRAWAL_TRANSACTION_FEE_COLUMM
+                                    ]
+                                )
                             ),
                             "coin": record[const.BINANCE_WITHDRAWAL_COIN_COLUMM],
                         }

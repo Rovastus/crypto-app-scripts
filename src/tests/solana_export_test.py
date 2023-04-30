@@ -19,14 +19,14 @@ class SolanaExportTest(ut.TestCase):
                 "2022-12-09 17:47:15",
                 const.EARN_OPERATION,
                 const.SOLANA_EARN_DESCRIPTION,
-                '{"amount": 0.01380075, "coin": "SOL"}',
+                '{"amount": "0.01380075", "coin": "SOL"}',
             ],
             [
                 1,
                 "2022-12-06 22:31:38",
                 const.TRANSFER_OPERATION,
                 const.SOLANA_SPEND_DESCRIPTION,
-                '{"fee": 5e-06, "coin": "SOL"}',
+                '{"fee": "5e-06", "coin": "SOL"}',
             ],
         ]:
             result_row = result_df.iloc[test_case[0]]

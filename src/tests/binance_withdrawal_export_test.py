@@ -1,7 +1,9 @@
 import unittest as ut
+
 import pandas as pd
-from binance_withdrawal_export import BinanceWithdrawalExport
+
 import constant as const
+from binance_withdrawal_export import BinanceWithdrawalExport
 
 
 class BinanceWithdrawalExportTest(ut.TestCase):

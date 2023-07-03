@@ -1,0 +1,41 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "command": "cd src && ./test.sh",
+      "problemMatcher": [],
+      "label": "SC",
+      "options": {
+        "statusbar": {
+          "label": "$(lightbulb) Run SC tests"
+        }
+      }
+    },
+    {
+      "type": "shell",
+      "command": "python main.py -d ../../../Export/${input:year} -o ../../../Export/${input:year}_output -y ${input:year}",
+      "problemMatcher": [],
+      "label": "SC",
+      "options": {
+        "cwd": "${workspaceFolder}/src",
+        "statusbar": {
+          "label": "$(play) Run SC"
+        }
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "year",
+      "type": "promptString",
+      "description": "Enter the year input",
+      "default": "2023"
+    }
+  ]
+}

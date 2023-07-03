@@ -1,7 +1,9 @@
 import unittest as ut
+
 import pandas as pd
-from binance_earning_export import BinanceEarningExport
+
 import constant as const
+from binance_earning_export import BinanceEarningExport
 
 
 class BinanceEarningExportTest(ut.TestCase):

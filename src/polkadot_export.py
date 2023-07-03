@@ -1,8 +1,10 @@
+import decimal
 import json
 import time
-import decimal
+
 import pandas as pd
 import requests
+
 import constant as const
 
 

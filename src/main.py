@@ -80,7 +80,7 @@ def __crypto_app_kraken_export(root, ref_files, output):
     for file in ref_files:
         print("Processing kraken export: " + root + "\\" + file)
         kraken_export = ke.KrakenExport()
-        export = pd.read_csv(root + "\\" + file)
+        export = pd.read_csv(root + "\\" + file, sep=";")
         kraken_export.read_export(export)
         if crypto_app_export is None:
             crypto_app_export = kraken_export.get_df()

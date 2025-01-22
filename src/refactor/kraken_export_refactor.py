@@ -27,7 +27,9 @@ class KrakenExportRefactor:
             "ATOM": "ATOM",
             "AUDIO": "AUDIO",
             "AVAX": "AVAX",
+            "BTC": "BTC",
             "DOT": "DOT",
+            "ETH": "ETH",
             "ETH2": "ETH2",
             "ETHW": "ETHW",
             "GLMR": "GLMR",
@@ -42,6 +44,7 @@ class KrakenExportRefactor:
             "XBT": "BTC",
             "XXBT": "BTC",
             "ZEUR": "EUR",
+            "EUR": "EUR",
             "ZUSD": "USD",
         }
 

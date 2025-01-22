@@ -14,7 +14,7 @@
     },
     {
       "type": "shell",
-      "command": "python main.py -d ../../../Export/${input:year} -o ../../../Export/${input:year}_output -y ${input:year}",
+      "command": "python main.py -d ../../Dane/Export/${input:year} -o ../../Dane/Export/${input:year}_output -y ${input:year}",
       "problemMatcher": [],
       "label": "SC",
       "options": {

@@ -18,9 +18,9 @@ def __crypto_app_binance_export(root, output, transactions, earnings, withdrawal
     crypto_app_export = None
 
     for transaction in transactions:
-        print("Processing binance transaction export: " + root + "\\" + transaction)
+        print("Processing binance transaction export: " + root + "/" + transaction)
         binance_transaction_export = bte.BinanceTransactionExport()
-        export = pd.read_csv(root + "\\" + transaction)
+        export = pd.read_csv(root + "/" + transaction)
         binance_transaction_export.read_export(export)
         if crypto_app_export is None:
             crypto_app_export = binance_transaction_export.get_df()
@@ -30,9 +30,9 @@ def __crypto_app_binance_export(root, output, transactions, earnings, withdrawal
             )
 
     for earning in earnings:
-        print("Processing binance earning export: " + root + "\\" + earning)
+        print("Processing binance earning export: " + root + "/" + earning)
         binance_earning_export = bee.BinanceEarningExport()
-        export = pd.read_csv(root + "\\" + earning)
+        export = pd.read_csv(root + "/" + earning)
         binance_earning_export.read_export(export)
         if crypto_app_export is None:
             crypto_app_export = binance_earning_export.get_df()
@@ -42,9 +42,9 @@ def __crypto_app_binance_export(root, output, transactions, earnings, withdrawal
             )
 
     for withdrawal in withdrawals:
-        print("Processing binance withdrawal export: " + root + "\\" + withdrawal)
+        print("Processing binance withdrawal export: " + root + "/" + withdrawal)
         binance_withdrawal_export = bwe.BinanceWithdrawalExport()
-        export = pd.read_csv(root + "\\" + withdrawal)
+        export = pd.read_csv(root + "/" + withdrawal)
         binance_withdrawal_export.read_export(export)
         if crypto_app_export is None:
             crypto_app_export = binance_withdrawal_export.get_df()
@@ -53,9 +53,9 @@ def __crypto_app_binance_export(root, output, transactions, earnings, withdrawal
                 [crypto_app_export, binance_withdrawal_export.get_df()]
             )
 
-    print("Saving crypto-app binance export file: " + output + "\\binance.csv")
+    print("Saving crypto-app binance export file: " + output + "/binance.csv")
     crypto_app_export.to_csv(
-        output + "\\binance.csv", index=False, sep=";", quotechar="'"
+        output + "/binance.csv", index=False, sep=";", quotechar="'"
     )
 
 
@@ -65,10 +65,10 @@ def __refactor_kraken_export(root, files, year, output):
 
     for file in files:
         if file.startswith(year):
-            print("Refactoring kraken export file: " + root + "\\" + file)
-            export = pd.read_csv(root + "\\" + file)
+            print("Refactoring kraken export file: " + root + "/" + file)
+            export = pd.read_csv(root + "/" + file)
             export_refactor.refactor(export)
-            ref_file_name = output + "\\ref_kraken_" + file
+            ref_file_name = output + "/ref_kraken_" + file
             print("Saving refactored file: " + ref_file_name)
             export.to_csv(ref_file_name, index=False, sep=";", quotechar="'")
             ref_files.append(ref_file_name)
@@ -80,18 +80,18 @@ def __crypto_app_kraken_export(root, ref_files, output):
     crypto_app_export = None
 
     for file in ref_files:
-        print("Processing kraken export: " + root + "\\" + file)
+        print("Processing kraken export: " + file)
         kraken_export = ke.KrakenExport()
-        export = pd.read_csv(root + "\\" + file, sep=";", quotechar="'")
+        export = pd.read_csv(file, sep=";", quotechar="'")
         kraken_export.read_export(export)
         if crypto_app_export is None:
             crypto_app_export = kraken_export.get_df()
         else:
             crypto_app_export = pd.concat([crypto_app_export, kraken_export.get_df()])
 
-    print("Saving crypto-app kraken export file: " + output + "\\" + "kraken.csv")
+    print("Saving crypto-app kraken export file: " + output + "/" + "kraken.csv")
     crypto_app_export.to_csv(
-        output + "\\" + "kraken.csv", index=False, sep=";", quotechar="'"
+        output + "/" + "kraken.csv", index=False, sep=";", quotechar="'"
     )
 
 
@@ -99,18 +99,18 @@ def __crypto_app_solana_export(root, ref_files, output):
     crypto_app_export = None
 
     for file in ref_files:
-        print("Processing solana export: " + root + "\\" + file)
+        print("Processing solana export: " + root + "/" + file)
         solana_export = sol.SolanaExport()
-        export = pd.read_csv(root + "\\" + file)
+        export = pd.read_csv(root + "/" + file)
         solana_export.read_export(export)
         if crypto_app_export is None:
             crypto_app_export = solana_export.get_df()
         else:
             crypto_app_export = pd.concat([crypto_app_export, solana_export.get_df()])
 
-    print("Saving crypto-app solana export file: " + output + "\\" + "solana.csv")
+    print("Saving crypto-app solana export file: " + output + "/" + "solana.csv")
     crypto_app_export.to_csv(
-        output + "\\" + "solana.csv", index=False, sep=";", quotechar="'"
+        output + "/" + "solana.csv", index=False, sep=";", quotechar="'"
     )
 
 
@@ -118,18 +118,18 @@ def __crypto_app_polkadot_export(root, ref_files, output):
     crypto_app_export = None
 
     for file in ref_files:
-        print("Processing polkadot export: " + root + "\\" + file)
+        print("Processing polkadot export: " + root + "/" + file)
         polkadot_export = dot.PolkadotExport()
-        export = pd.read_csv(root + "\\" + file)
+        export = pd.read_csv(root + "/" + file)
         polkadot_export.read_export(export)
         if crypto_app_export is None:
             crypto_app_export = polkadot_export.get_df()
         else:
             crypto_app_export = pd.concat([crypto_app_export, polkadot_export.get_df()])
 
-    print("Saving crypto-app polkadot export file: " + output + "\\" + "polkadot.csv")
+    print("Saving crypto-app polkadot export file: " + output + "/" + "polkadot.csv")
     crypto_app_export.to_csv(
-        output + "\\" + "polkadot.csv", index=False, sep=";", quotechar="'"
+        output + "/" + "polkadot.csv", index=False, sep=";", quotechar="'"
     )
 
 
@@ -197,14 +197,16 @@ def main():
     for root, _, files in os.walk(args.output, topdown=False):
         for file in files:
             if not file.startswith("ref_"):
-                final_files.append(str(args.output) + "\\" + file)
+                final_files.append(str(args.output) + "/" + file)
+
+    print(final_files)
 
     df_list = [pd.read_csv(file, sep=";", quotechar="'") for file in final_files]
     final_df = pd.concat(df_list)
     final_df = final_df.sort_values(by=const.UTC_TIME_COLUMN)
-    print("Saving final export file: " + str(args.output) + "\\final.csv")
+    print("Saving final export file: " + str(args.output) + "/final.csv")
     final_df.to_csv(
-        str(args.output) + "\\final.csv", index=False, sep=";", quotechar="'"
+        str(args.output) + "/final.csv", index=False, sep=";", quotechar="'"
     )
 
 

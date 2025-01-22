@@ -34,6 +34,7 @@ class BinanceEarningExport:
                 const.BINANCE_STAKING_REDEMPTION_OPERATION,
                 const.BINANCE_SIMPLE_EARN_LOCKED_SUBSCRIPTION_OPERATION,
                 const.BINANCE_SIMPLE_EARN_LOCKED_REDEMPTION_OPERATION,
+                const.BINANCE_DOT_REDEMPTION_OPERATION
             ):
                 pass
             elif operation == const.BINANCE_WITHDRAWAL_OPERATION:
@@ -46,7 +47,11 @@ class BinanceEarningExport:
             ):
                 # can skip those operations as transaction export is used for those operation
                 pass
-            elif operation == const.BINANCE_ETH_STAKING_TRANSACTION_OPERATION:
+            elif operation in (
+                const.BINANCE_ETH_STAKING_TRANSACTION_OPERATION,
+                const.BINANCE_ETH_STAKING_WITHDRAWALS_TRANSACTION_OPERATION,
+                const.BINANCE_ASSET_RECOVERY_TRANSACTION_OPERATION
+            ):
                 # load two rows
                 row_1 = df.iloc[i]
                 i += 1
@@ -92,6 +97,7 @@ class BinanceEarningExport:
                 const.BINANCE_DOT_SLOT_AUCTION_REWARDS,
                 const.BINANCE_DISTRIBUTION_OPERATION,
                 const.BINANCE_SIMPLE_EARN_LOCKED_REWARDS_OPERATION,
+                const.BINANCE_LAUNCHPOOL_WITHDRAWAL_OPERATION
             ):
                 earn = df.iloc[i]
                 # remove LD from coin value when operation is const.BINANCE_SAVINGS_DISTRIBUTION_OPERATION

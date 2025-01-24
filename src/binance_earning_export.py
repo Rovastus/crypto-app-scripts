@@ -97,7 +97,11 @@ class BinanceEarningExport:
                 const.BINANCE_DOT_SLOT_AUCTION_REWARDS,
                 const.BINANCE_DISTRIBUTION_OPERATION,
                 const.BINANCE_SIMPLE_EARN_LOCKED_REWARDS_OPERATION,
-                const.BINANCE_LAUNCHPOOL_WITHDRAWAL_OPERATION
+                const.BINANCE_LAUNCHPOOL_WITHDRAWAL_OPERATION,
+                const.BINANCE_AIRDROP_ASSETS_OPERATION,
+                const.BINANCE_LAUNCHPOOL_AIRDROP_OPERATION,
+                const.BINANCE_MEGADROP_REWARDS_OPERATION,
+                const.BINANCE_HODLER_AIRDROP_OPERATION
             ):
                 earn = df.iloc[i]
                 # remove LD from coin value when operation is const.BINANCE_SAVINGS_DISTRIBUTION_OPERATION

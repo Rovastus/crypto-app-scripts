@@ -59,11 +59,13 @@ Scripts for creating the exports files which are used by crypto-app.
   | Field name | Field description |
   | ------------- | ------------- |
   | amount | The amount which was earned |
+  | fee (optional) | The amount which deducted from the amount which was earned |
   | coin | The sticker of the coin which was earned |
 - Example
   ```javascript
     {
     "amount": 10,
+    "fee": 1,
     "coin": "DOT"
     }
   ```

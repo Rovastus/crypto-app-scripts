@@ -38,6 +38,7 @@ class KrakenExportRefactor:
             "LINK": "LINK",
             "MOVR": "MOVR",
             "SOL": "SOL",
+            "STRK": "STRK",
             "UNI": "UNI",
             "XETH": "ETH",
             "XLTC": "LTC",

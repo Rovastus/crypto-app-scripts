@@ -24,7 +24,10 @@ class KrakenExport:
 
             if type_value == const.KRAKEN_DEPOSIT_TYPE:
                 pass
-            elif type_value == const.KRAKEN_STAKING_TYPE:
+            elif type_value in (
+                const.KRAKEN_STAKING_TYPE,
+                const.KRAKEN_EARN_TYPE
+            ) and df[const.KRAKEN_SUBTYPE_COLUMN][i] != const.KRAKEN_MIGRATION_SUBTYPE:
                 self.new_df_data.append(
                     [
                         df[const.KRAKEN_UTC_TIME_COLUMN][i],
@@ -33,12 +36,15 @@ class KrakenExport:
                         json.dumps(
                             {
                                 "amount": str(abs(df[const.KRAKEN_AMOUNT_COLUMN][i])),
+                                "fee": str(abs(df[const.KRAKEN_FEE_COLUMN][i])),
                                 "coin": df[const.KRAKEN_ASSET_COLUMN][i],
                             }
                         ),
                     ]
                 )
-            elif type_value == const.KRAKEN_TRADE_TYPE:
+            elif type_value == const.KRAKEN_EARN_TYPE and df[const.KRAKEN_SUBTYPE_COLUMN][i] == const.KRAKEN_MIGRATION_SUBTYPE and df[const.KRAKEN_ASSET_COLUMN][i] not in ("ETH", "ETH2"):
+                pass
+            elif type_value == const.KRAKEN_TRADE_TYPE or (type_value == const.KRAKEN_EARN_TYPE and df[const.KRAKEN_SUBTYPE_COLUMN][i] == const.KRAKEN_MIGRATION_SUBTYPE):
                 # load second column
                 price = self.__get_price_row(df.iloc[i], df.iloc[i + 1])
                 buy = self.__get_buy_row(df.iloc[i], df.iloc[i + 1])
